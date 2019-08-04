@@ -51,4 +51,4 @@ Feel free to contribute. Please follow the styles above while creating pull requ
 
 
 ## Demo
-https://xkamson.github.io/application-generator-web/#/
+https://xkamson.github.io/ml-web/
