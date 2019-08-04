@@ -11,15 +11,14 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "CI=true react-scripts test",
+    "test:coverage": "npm test -- --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint './src/{app,tests}/**/*.{js,jsx}'",
     "lint:fix": "eslint --fix './src/{app,tests}/**/*.{js,jsx}'",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "test": "CI=true react-scripts test --env=jsdom",
-  "test:coverage": "npm test -- --coverage",
   "browserslist": {
     "production": [
       ">0.2%",
