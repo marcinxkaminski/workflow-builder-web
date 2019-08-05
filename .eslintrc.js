@@ -18,7 +18,9 @@ module.exports = {
   plugins: [
     'react',
   ],
-  rules: {},
+  rules: {
+    'import/no-unresolved': [2, { caseSensitive: false }]
+  },
   overrides: [
     {
       files: ["*.test.js", "*.test.jsx"],
