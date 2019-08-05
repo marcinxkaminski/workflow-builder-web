@@ -18,9 +18,7 @@ module.exports = {
   plugins: [
     'react',
   ],
-  rules: {
-    "react/prefer-stateless-function": "off"
-  },
+  rules: {},
   overrides: [
     {
       files: ["*.test.js", "*.test.jsx"],
