@@ -7,6 +7,7 @@ cache:
 script:
   - npm test
   - npm run test:coverage
+  - npm run snyk
   - npm run lint
   - npm run build
 deploy:
@@ -16,3 +17,7 @@ deploy:
   local_dir: build
   on:
     branch: master
+after_success:
+  - snyk monitor
+after_deploy:
+  - snyk monitor
