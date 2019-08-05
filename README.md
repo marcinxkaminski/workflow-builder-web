@@ -1,5 +1,5 @@
 # Marcin Kamiński - Engineer's Thesis
-## Application allowing to build workflow for machine learning on bitalino data for Engineer's Thesis on AGH (University of Science and Technology) in Cracow.
+## Development of an web application to manage the machine learning process for Engineer's Thesis on AGH (University of Science and Technology) in Cracow.
 [![Build Status](https://travis-ci.com/xkamson/ml-web.svg?token=TWgUpUSCCjzdhcZucEuD&branch=master)](https://travis-ci.com/xkamson/ml-web)
 
 ?
