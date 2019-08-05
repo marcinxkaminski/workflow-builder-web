@@ -2,8 +2,6 @@
 ## Development of an web application to manage the machine learning process for Engineer's Thesis on AGH (University of Science and Technology) in Cracow.
 [![Build Status](https://travis-ci.com/xkamson/ml-web.svg?token=TWgUpUSCCjzdhcZucEuD&branch=master)](https://travis-ci.com/xkamson/ml-web)
 
-?
-
 
 ### Installing
 
