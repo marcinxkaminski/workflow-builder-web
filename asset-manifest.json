@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ml-web/static/css/main.34de6062.chunk.css",
+    "main.js": "/ml-web/static/js/main.edf38dfc.chunk.js",
+    "main.js.map": "/ml-web/static/js/main.edf38dfc.chunk.js.map",
+    "runtime~main.js": "/ml-web/static/js/runtime~main.a5d6bb10.js",
+    "runtime~main.js.map": "/ml-web/static/js/runtime~main.a5d6bb10.js.map",
+    "static/js/2.65aa1cca.chunk.js": "/ml-web/static/js/2.65aa1cca.chunk.js",
+    "static/js/2.65aa1cca.chunk.js.map": "/ml-web/static/js/2.65aa1cca.chunk.js.map",
+    "index.html": "/ml-web/index.html",
+    "precache-manifest.a40b1697bca1a2f100fb314561b94945.js": "/ml-web/precache-manifest.a40b1697bca1a2f100fb314561b94945.js",
+    "service-worker.js": "/ml-web/service-worker.js",
+    "static/css/main.34de6062.chunk.css.map": "/ml-web/static/css/main.34de6062.chunk.css.map"
+  }
+}
