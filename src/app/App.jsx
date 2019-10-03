@@ -1,11 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
+import DropzoneContainer from './Dropzone/DropzoneContainer';
+import SelectorContainer from './Selector/SelectorContainer';
 
-export default class App extends Component {
-  render() {
-    return (
-      <div>
-        Hi!
+const App = React.memo(() => {
+  return (
+    <div className="container-fluid full-screen">
+      <div className="full-screen row h-100 justify-content-center">
+        <DropzoneContainer />
+        <SelectorContainer />
       </div>
-    );
-  }
-}
+    </div>
+  );
+});
+
+export default App;
