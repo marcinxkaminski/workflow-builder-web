@@ -19,7 +19,8 @@ module.exports = {
     'react',
   ],
   rules: {
-    "react/prefer-stateless-function": "off"
+    "react/prefer-stateless-function": "off",
+    "import/prefer-default-export": "off"
   },
   overrides: [
     {
