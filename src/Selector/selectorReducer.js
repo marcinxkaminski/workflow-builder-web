@@ -1,15 +1,17 @@
 import ActionTypes from '../data/ActionTypes';
 import RequestStatuses from '../data/RequestStatuses';
 
-const initialState = {
+export const initialState = {
   request: {
     status: null,
     error: null,
   },
-  availableWorkflowElements: null,
+  availableWorkflowElements: [],
+  inputData: null,
+  resultData: null,
 };
 
-export default function appReducer(state = initialState, { type, payload }) {
+export default function dropzoneReducer(state = initialState, { type, payload }) {
   switch (type) {
     case ActionTypes.GET_AVAILABLE_WORKFLOW_ELEMENTS:
       return Object.assign({}, state, {

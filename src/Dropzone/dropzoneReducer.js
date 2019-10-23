@@ -1,7 +1,7 @@
-// import ActionTypes from '../data/ActionTypes';
-// import RequestStatuses from '../data/RequestStatuses';
+import ActionTypes from '../data/ActionTypes';
+import RequestStatuses from '../data/RequestStatuses';
 
-const initialState = {
+export const initialState = {
   request: {
     status: null,
     error: null,

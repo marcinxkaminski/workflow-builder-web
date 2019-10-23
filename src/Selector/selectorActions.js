@@ -3,7 +3,7 @@
 import ActionTypes from '../data/ActionTypes';
 import requestDispatch from '../utils/requestDispatch';
 
-export function initApp() {
+export function getAvailableWorkflowElements() {
   return requestDispatch(
     ActionTypes.GET_AVAILABLE_WORKFLOW_ELEMENTS,
     // () => get(ApiEnpoints.WORKFLOW_ELEMENTS),

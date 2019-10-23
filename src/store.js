@@ -1,17 +1,15 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import appState from './App/appReducer';
-import dropzoneState from './Dropzone/dropzoneReducer';
-import selectorState from './Selector/selectorReducer';
+import dropzoneState, { initialState as dropzoneInitialState } from './Dropzone/dropzoneReducer';
+import selectorState, { initialState as selectorInitialState } from './Selector/selectorReducer';
 
 const initialState = {
-  appState: {},
-  dropzoneState: {},
-  selectorState: {},
+  dropzoneState: dropzoneInitialState,
+  selectorState: selectorInitialState,
 };
 
 export default createStore(
-  combineReducers({ appState, dropzoneState, selectorState }),
+  combineReducers({ dropzoneState, selectorState }),
   initialState,
   applyMiddleware(thunk),
 );
