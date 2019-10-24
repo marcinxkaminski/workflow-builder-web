@@ -1,5 +1,4 @@
 import ActionTypes from '../data/ActionTypes';
-import RequestStatuses from '../data/RequestStatuses';
 
 export const initialState = {
   request: {
@@ -7,26 +6,24 @@ export const initialState = {
     error: null,
   },
   availableWorkflowElements: [],
-  inputData: null,
-  resultData: null,
 };
 
-export default function dropzoneReducer(state = initialState, { type, payload }) {
+export default function selectorReducer(state = initialState, { type, payload }) {
   switch (type) {
     case ActionTypes.GET_AVAILABLE_WORKFLOW_ELEMENTS:
       return Object.assign({}, state, {
-        request: { status: RequestStatuses.PENDING, error: '' },
+        request: { status: payload.status, error: '' },
       });
 
     case ActionTypes.GET_AVAILABLE_WORKFLOW_ELEMENTS_SUCCESS:
       return Object.assign({}, state, {
-        request: { status: RequestStatuses.SUCCESS, error: '' },
-        availableWorkflowElements: payload,
+        request: { status: payload.status, error: '' },
+        availableWorkflowElements: payload.data,
       });
 
     case ActionTypes.GET_AVAILABLE_WORKFLOW_ELEMENTS_ERROR:
       return Object.assign({}, state, {
-        request: { status: RequestStatuses.ERROR, error: payload },
+        request: { status: payload.status, error: payload.error },
       });
 
     default:

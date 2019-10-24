@@ -1,12 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import SelectorArrow from './SelectorArrow';
-import { getAvailableWorkflowElements } from './selectorActions';
-import Carousel from '@brainhubeu/react-carousel';
-import ArrowDirections from '../data/ArrowDirections';
-
-const SLIDES_PER_PAGE = 3;
+import { getAvailableWorkflowElements, addWorkflowElement } from './selectorActions';
+import SelectorCarousel from './SelectorCarousel';
 
 const SelectorContainer = (props) => {
   useEffect(() => {
@@ -14,20 +10,21 @@ const SelectorContainer = (props) => {
   }, []);
 
   return (
-    <div id="selector" className="w-100 shadow p-2" >
-      <Carousel
-        arrowLeft={<SelectorArrow direction={ArrowDirections.LEFT} />}
-        arrowRight={<SelectorArrow direction={ArrowDirections.RIGHT} />}
-        slidesPerPage={SLIDES_PER_PAGE}
-        infinite
-        centered>
-
-      </Carousel>
+    <div id="selector" className="container-fluid w-100 shadow p-4 mb-2" >
+      <div className="row">
+        <SelectorCarousel
+          items={props.availableWorkflowElements}
+          onAdd={props.addWorkflowElement}
+        />
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = ({ selectorState }) => selectorState;
-const mapDispatchToProps = dispatch => bindActionCreators({ getAvailableWorkflowElements }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getAvailableWorkflowElements,
+  addWorkflowElement
+}, dispatch);
 
 export default React.memo(connect(mapStateToProps, mapDispatchToProps)(SelectorContainer));
