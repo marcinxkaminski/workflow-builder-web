@@ -1,4 +1,5 @@
 // CONSTANTS
+$fonts: "Menlo", "Monaco", "Consolas", "Droid Sans Mono", "Inconsolata", "Courier New", monospace;
 
 $red: rgba(208, 0, 0, 1);
 $yellow: #f5af19;
@@ -17,9 +18,14 @@ $selector-border-radius: 50px;
 $button-size: 50px;
 $loader-size: 25px;
 
+$element-card-min-width: 180px;
+$element-card-min-height: 190px;
 $element-card-max-width: 200px;
 $element-card-max-height: 250px;
 $element-card-radius: 10%;
+
+$element-card-small-width: 180px;
+$element-card-small-height: 190px;
 
 $colors: (
   "blue": $blue,
@@ -32,6 +38,16 @@ $colors: (
 
 
 // HELPERS
+.reset-spaces{
+margin: 0;
+  padding: 0;
+}
+
+.full-screen{
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
 .background-gradient-properties{
   background-attachment: fixed;
   background-position: center;
@@ -54,20 +70,19 @@ $colors: (
   width: $loader-size;
 }
 
-// MAIN
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: "Menlo", "Monaco", "Consolas", "Droid Sans Mono", "Inconsolata", "Courier New", monospace;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.opacity-50{
+  opacity: .5;
 }
 
-#main-app{
+// MAIN
+html, body {
   @extend .background-gradient-properties;
+  @extend .full-screen;
+  @extend .reset-spaces;
 
-  min-width: 100vw;
-  min-height: 100vh;
+  font-family: $fonts;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-image: linear-gradient(to bottom, $purple, $dark-purple);
 }
 
@@ -82,7 +97,17 @@ html, body {
 .element-card{
   max-width: $element-card-max-width;
   max-height: $element-card-max-height;
+  min-width: $element-card-min-width;
+  min-height: $element-card-min-height;
   border-radius: $element-card-radius;
+}
+
+.element-card-small{
+  @extend .element-card;
+  @extend .opacity-50;
+
+  max-width: $element-card-small-width;
+  max-height: $element-card-small-height;
 }
 
 .inset-shadow{

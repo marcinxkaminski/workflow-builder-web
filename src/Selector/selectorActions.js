@@ -5,6 +5,7 @@ import requestDispatch from '../utils/requestDispatch';
 import WorkflowElement from '../models/WorkflowElement';
 
 export function getAvailableWorkflowElements() {
+  // TODO: integrate this endpoint with the API.
   return requestDispatch(
     ActionTypes.GET_AVAILABLE_WORKFLOW_ELEMENTS,
     // () => get(ApiEnpoints.WORKFLOW_ELEMENTS),
@@ -28,6 +29,6 @@ export function getAvailableWorkflowElements() {
 export function addWorkflowElement(item) {
   return {
     type: ActionTypes.ADD_WORKFLOW_ELEMENT,
-    payload: { data: item },
+    payload: item,
   };
 }

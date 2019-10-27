@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const getButtonProps = (props) => {
   const buttonProps = {}
@@ -25,13 +25,14 @@ const renderIcon = (icon) => (
 );
 
 const Button = props => {
-  const buttonProps = getButtonProps(props);
+  const btnProps = getButtonProps(props);
+  const { shadow, customClasses, loading, icon } = props;
 
   return (
-    <button {...buttonProps} className={`btn btn-outline-light btn-circle ${props.shadow ? 'shadow ' : ' '}${props.class || ''}`}>
-      {props.loading ? renderLoader() : renderIcon(props.icon)}
+    <button {...btnProps} className={`btn btn-outline-light btn-circle ${shadow ? 'shadow ' : ' '}${customClasses || ''}`}>
+      {loading ? renderLoader() : renderIcon(icon)}
     </button>
   );
 };
 
-export default React.memo(Button);
+export default memo(Button);

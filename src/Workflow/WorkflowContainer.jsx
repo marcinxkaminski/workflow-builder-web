@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { memo } from 'react';
+import { connect } from 'react-redux'
 import Button from '../Common/Button';
+import { bindActionCreators } from 'redux';
 import MaterialIcons from '../data/MaterialIcons';
+import { deleteWorkflowElement, submitWorkflow } from './workflowActions';
+import WorkflowElementsList from './WorkflowElementsList';
 
 const WorkflowContainer = (props) => {
-  useEffect(() => {
-    console.log('git');
-  }, []);
+  const { selectedWorkflowElements, deleteWorkflowElement } = props;
 
   return (
     <div className="container-fluid my-2">
-      <div className="row">
-        {/* TODO: Here we should display all selected items */}
-      </div>
+      <WorkflowElementsList items={selectedWorkflowElements} onDelete={deleteWorkflowElement} />
 
-      <div className="row justify-content-center">
-        <div className="col-1 text-center">
-          <Button icon={MaterialIcons.DOWNLOAD} loading={props.request} shadow />
+      <div className="row justify-content-center my-4">
+        <div className="col text-center mb-5">
+          <Button icon={MaterialIcons.DOWNLOAD} loading={props.request.status} customClasses="mx-auto" onClick={submitWorkflow} shadow />
         </div>
       </div>
 
@@ -23,4 +23,10 @@ const WorkflowContainer = (props) => {
   );
 };
 
-export default React.memo(WorkflowContainer);
+const mapStateToProps = ({ workflowState }) => workflowState;
+const mapDispatchToProps = dispatch => bindActionCreators({
+  deleteWorkflowElement,
+  submitWorkflow
+}, dispatch);
+
+export default memo(connect(mapStateToProps, mapDispatchToProps)(WorkflowContainer));

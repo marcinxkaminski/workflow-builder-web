@@ -1,5 +1,5 @@
 import request from '../utils/request';
-import BASE_API_URL from './apiEndpoints';
+import BASE_API_URL from './ApiEndpoints';
 
 const OPTIONS = {};
 const HEADERS = {};

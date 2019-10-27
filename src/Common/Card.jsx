@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Button from './Button';
 import MaterialIcons from '../data/MaterialIcons';
 
@@ -42,16 +42,16 @@ const renderDescription = (description) => (
 
 const renderAddButton = (onAdd) => (
   <div className="row justify-content-center">
-    <div className="col-5 text-center">
-      <Button icon={MaterialIcons.ADD} class="btn-outline-dark" shadow={false} onClick={onAdd} />
+    <div className="col text-center">
+      <Button icon={MaterialIcons.ADD} customClasses="btn-outline-dark mx-auto" shadow={false} onClick={onAdd} />
     </div>
   </div>
 );
 
 const renderDeleteButton = (onDelete) => (
   <div className="row justify-content-center">
-    <div className="col-5 text-center">
-      <Button icon={MaterialIcons.DELETE} class="btn-outline-dark" shadow={false} onClick={onDelete} />
+    <div className="col text-center">
+      <Button icon={MaterialIcons.DELETE} customClasses="btn-outline-dark mx-auto" shadow={false} onClick={onDelete} />
     </div>
   </div>
 );
@@ -64,24 +64,30 @@ const renderConfig = (config) => (
   </div>
 );
 
-const Card = props => {
-  const { item: { name, description, materialIcon, config }, index, onAdd, onDelete } = props;
+const Card = (props) => {
+  const { item = {}, index, customClasses = '', hideButtons, onAdd, onDelete } = props;
+
+  if (!Object.keys(item).length) {
+    console.error('Cannot render card for this item:', item);
+    return null;
+  }
 
   return (
-    <div className="card element-card text-center">
+    <div className={`card element-card shadow text-center m-2 ${customClasses}`}>
       <div className="card-body">
 
         {typeof index !== 'undefined' ? renderIndex(index) : null}
-        {name ? renderTitle(name) : null}
-        {materialIcon ? renderIcon(materialIcon) : null}
-        {description ? renderDescription(description) : null}
+        {item.name ? renderTitle(item.name) : null}
+        {item.materialIcon ? renderIcon(item.materialIcon) : null}
+        {item.description ? renderDescription(item.description) : null}
 
-        {onAdd ? renderAddButton(onAdd) : null}
-        {onDelete ? renderDeleteButton(onDelete) : null}
+        {onAdd && !hideButtons ? renderAddButton(onAdd) : null}
+        {onDelete && !hideButtons ? renderDeleteButton(onDelete) : null}
+
       </div>
-      {Object.keys(config).length ? renderConfig(config) : null}
+      {Object.keys(item.config || {}).length ? renderConfig(item.config) : null}
     </div>
   );
 };
 
-export default React.memo(Card);
+export default memo(Card);
