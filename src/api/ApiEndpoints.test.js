@@ -1,4 +1,4 @@
-import ApiEndpoints from './ApiEndpoints';
+import * as ApiEndpoints from './ApiEndpoints';
 
 describe('API ENDPOINTS', () => {
   it('has base api url', async () => {

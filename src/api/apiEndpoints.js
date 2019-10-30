@@ -1,5 +1,3 @@
-export default {
-  BASE_API_URL: 'https://u.com',
-  WORKFLOW_ELEMENTS: '/workflow-elements',
-  WORKFLOW: '/workflow',
-};
+export const BASE_API_URL = 'https://u.com';
+export const WORKFLOW_ELEMENTS = '/workflow-elements';
+export const WORKFLOW = '/workflow';
