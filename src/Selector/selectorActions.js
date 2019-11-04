@@ -11,16 +11,16 @@ export function getAvailableWorkflowElements() {
     // () => get(ApiEnpoints.WORKFLOW_ELEMENTS),
     async () => [
       new WorkflowElement({
-        id: 1, name: 'FIRST', description: 'this is exemplary item description', materialIcon: 'build', config: {},
+        id: 1, name: 'FILTER', description: 'Filters the signal and checks for vulnerabilities', materialIcon: 'search', config: {},
       }),
       new WorkflowElement({
-        id: 2, name: 'SECOND', description: 'this is exemplary item description', materialIcon: 'alarm_on', config: {},
+        id: 2, name: 'NORMALIZE', description: 'Runs normalization process on the whole data', materialIcon: 'equalizer', config: {},
       }),
       new WorkflowElement({
-        id: 3, name: 'THIRD', description: 'this is exemplary item description', materialIcon: 'all_inbox', config: {},
+        id: 3, name: 'START', description: 'Prints start message and params', materialIcon: 'play_arrow', config: {},
       }),
       new WorkflowElement({
-        id: 4, name: 'FOURTH', description: 'this is exemplary item description', materialIcon: 'android', config: {},
+        id: 4, name: 'END', description: 'Prints end message with execution time and params', materialIcon: 'exit_to_app', config: {},
       }),
     ],
   );

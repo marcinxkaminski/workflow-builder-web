@@ -9,7 +9,7 @@ const WorkflowElementsList = (props) => {
   return (
     <div className="row w-100 mx-auto justify-content-center align-items-center my-5">
       {items.map((item, idx) => (
-        <Card key={idx} index={idx} item={tranfsormItemToDisplay(item)} onDelete={() => onDelete(idx)} />
+        <Card key={idx} index={idx} item={tranfsormItemToDisplay(item)} onDelete={() => onDelete(idx)} customClasses="element-card-selected" />
       ))}
     </div>
   )

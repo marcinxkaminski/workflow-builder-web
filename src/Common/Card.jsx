@@ -13,17 +13,17 @@ const renderIndex = (index) => (
 const renderTitle = (name) => (
   <div className="row justify-content-center">
     <div className="col text-center">
-      <h3 className="card-title">{name}</h3>
+      <h4 className="card-title">{name}</h4>
     </div>
   </div>
 );
 
 const renderIcon = (icon) => (
-  <div className="row justify-content-center">
+  <div className="row justify-content-center my-2">
     <div className="col text-center">
-      <h1 className="card-subtitle mb-2">
+      <div className="card-subtitle">
         <i className="material-icons">{icon}</i>
-      </h1>
+      </div>
     </div>
   </div>
 );
@@ -31,11 +31,11 @@ const renderIcon = (icon) => (
 const renderDescription = (description) => (
   <div className="row justify-content-center mb-3">
     <div className="col text-center">
-      <p className="card-text">
-        <small>
+      <div className="card-text">
+        <small className="text-muted">
           {description}
         </small>
-      </p>
+      </div>
     </div>
   </div>
 );

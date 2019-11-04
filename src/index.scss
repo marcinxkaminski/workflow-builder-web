@@ -14,18 +14,20 @@ $purple: #8E2DE2;
 $dark-purple: #4A00E0;
 
 $selector-border-radius: 50px;
+$selector-min-height: 315px;
 
 $button-size: 50px;
 $loader-size: 25px;
 
-$element-card-min-width: 180px;
-$element-card-min-height: 190px;
-$element-card-max-width: 200px;
-$element-card-max-height: 250px;
+$element-card-width: 245px;
+$element-card-height: 260px;
 $element-card-radius: 10%;
 
-$element-card-small-width: 180px;
-$element-card-small-height: 190px;
+$element-card-small-width: 185px;
+$element-card-small-height: 200px;
+
+$element-card-selected-width: 175px;
+$element-card-selected-height: 200px;
 
 $colors: (
   "blue": $blue,
@@ -88,6 +90,7 @@ html, body {
 
 #selector{
   @extend .background-gradient-properties;
+  min-height: $selector-min-height;
 
   background-image: linear-gradient(to bottom, $orange, $yellow);
   border-bottom-right-radius: $selector-border-radius;
@@ -95,10 +98,8 @@ html, body {
 }
 
 .element-card{
-  max-width: $element-card-max-width;
-  max-height: $element-card-max-height;
-  min-width: $element-card-min-width;
-  min-height: $element-card-min-height;
+  width: $element-card-width;
+  height: $element-card-height;
   border-radius: $element-card-radius;
 }
 
@@ -106,8 +107,13 @@ html, body {
   @extend .element-card;
   @extend .opacity-50;
 
-  max-width: $element-card-small-width;
-  max-height: $element-card-small-height;
+  width: $element-card-small-width;
+  height: $element-card-small-height;
+}
+
+.element-card-selected{
+  width: $element-card-selected-width;
+  height: $element-card-selected-height;
 }
 
 .inset-shadow{
