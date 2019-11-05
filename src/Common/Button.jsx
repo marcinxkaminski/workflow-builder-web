@@ -1,27 +1,26 @@
 import React, { memo } from 'react';
 
-const getButtonProps = (props) => {
+export const DEFAULT_ICON = 'help';
+export const LOADING_TEXT = 'Loading...';
+export const DEFAULT_CLASSES = 'btn btn-outline-light btn-circle';
+
+export const getButtonProps = ({ onClick, disabled }) => {
   const buttonProps = {}
 
-  if (props.onClick) {
-    buttonProps.onClick = props.onClick;
-  }
-
-  if (props.disabled) {
-    buttonProps.disabled = props.disabled;
-  }
+  if (onClick) buttonProps.onClick = onClick;
+  if (disabled) buttonProps.disabled = disabled;
 
   return buttonProps;
-}
+};
 
-const renderLoader = () => (
+export const renderLoader = () => (
   <div className="loader spinner-border" role="status">
-    <span className="sr-only">Loading...</span>
+    <span className="sr-only">{LOADING_TEXT}</span>
   </div>
 );
 
-const renderIcon = (icon) => (
-  <i className="material-icons">{icon}</i>
+export const renderIcon = (icon) => (
+  <i className="material-icons">{icon || DEFAULT_ICON}</i>
 );
 
 const Button = props => {
@@ -29,7 +28,9 @@ const Button = props => {
   const { shadow, customClasses, loading, icon } = props;
 
   return (
-    <button {...btnProps} className={`btn btn-outline-light btn-circle ${shadow ? 'shadow ' : ' '}${customClasses || ''}`}>
+    <button
+      {...btnProps}
+      className={`${DEFAULT_CLASSES}${shadow ? ' shadow' : ''}${customClasses ? ' ' + customClasses : ''}`}>
       {loading ? renderLoader() : renderIcon(icon)}
     </button>
   );
