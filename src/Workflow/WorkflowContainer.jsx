@@ -7,7 +7,7 @@ import { deleteWorkflowElement, submitWorkflow } from './workflowActions';
 import WorkflowElementsList from './WorkflowElementsList';
 
 const WorkflowContainer = (props) => {
-  const { selectedWorkflowElements, deleteWorkflowElement } = props;
+  const { selectedWorkflowElements, deleteWorkflowElement, submitWorkflow } = props;
 
   return (
     <div className="container-fluid my-2">

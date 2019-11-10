@@ -1,6 +1,6 @@
 import ActionTypes from '../data/ActionTypes';
-// import { post } from '../api/apiRequests';
-// import ApiEnpoints from '../api/ApiEndpoints';
+import { post } from '../api/apiRequests';
+import * as ApiEnpoints from '../api/ApiEndpoints';
 import requestDispatch from '../utils/requestDispatch';
 import { openUrlInNewTab } from '../utils/windowHelper';
 
@@ -11,21 +11,26 @@ export function deleteWorkflowElement(index) {
   };
 }
 
+export function onlineProcessing(item) {
+  console.log(item);
+}
+
 export function submitWorkflow() {
   return async (dispatch, getState) => {
-    const { selectedWorkflowElements = [], workflowUrl } = getState().workflowState;
-    let url = workflowUrl;
+    const { selectedWorkflowElements: elements = [], workflowId } = getState().workflowState;
+    let finalId = workflowId;
 
-    // TODO: integrate this endpoint with the API.
-    if (!url) {
-      url = await dispatch(requestDispatch(
-        ActionTypes.GET_AVAILABLE_WORKFLOW_ELEMENTS,
-        // () => post(ApiEnpoints.WORKFLOW),
-        async () => ({ url: 'https://google.com' }),
-        selectedWorkflowElements,
+    if (!finalId) {
+      finalId = await dispatch(requestDispatch(
+        ActionTypes.SUBMIT_WORKFLOW,
+        async () => {
+          const { id } = await post(ApiEnpoints.WORKFLOW_ELEMENTS, { elements });
+          return id;
+        },
       ));
     }
+    console.log(`${ApiEnpoints.BASE_API_URL}${ApiEnpoints.WORKFLOW_FILES}?id=${finalId}`);
 
-    openUrlInNewTab(url);
+    openUrlInNewTab(`${ApiEnpoints.BASE_API_URL}${ApiEnpoints.WORKFLOW_FILES}?id=${finalId}`);
   };
 }

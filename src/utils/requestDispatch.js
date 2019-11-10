@@ -1,7 +1,7 @@
 import { SUCCESS_SUFIX, ERROR_SUFIX } from '../data/ActionTypes';
 import RequestStatuses from '../data/RequestStatuses';
 
-export default function requestDispatch(actionType, func, params) {
+export default function requestDispatch(actionType, func, params = null) {
   return async (dispatch) => {
     try {
       dispatch({ type: actionType, payload: { status: RequestStatuses.PENDING } });

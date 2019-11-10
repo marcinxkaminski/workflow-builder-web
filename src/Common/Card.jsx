@@ -56,10 +56,11 @@ const renderDeleteButton = (onDelete) => (
   </div>
 );
 
-const renderConfig = (config) => (
-  <div className="card-footer">
+const renderConfig = (config, result = null) => (
+  <div className="card-footer p-0">
+    <textarea className="form-control" defaultValue={JSON.stringify(config)} />
     <small className="text-muted">
-      {/* TODO: Display config */}
+      Result: {result ? JSON.stringify(result) : null}
     </small>
   </div>
 );

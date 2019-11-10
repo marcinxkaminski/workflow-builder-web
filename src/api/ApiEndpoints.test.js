@@ -12,7 +12,7 @@ describe('API ENDPOINTS', () => {
   });
 
   it('has workflow endpoint', async () => {
-    expect(Object.keys(ApiEndpoints).includes('WORKFLOW'));
-    expect(ApiEndpoints.WORKFLOW).toEqual('/workflow');
+    expect(Object.keys(ApiEndpoints).includes('WORKFLOW_FILES'));
+    expect(ApiEndpoints.WORKFLOW_FILES).toEqual('/files');
   });
 });

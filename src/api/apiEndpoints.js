@@ -1,3 +1,3 @@
-export const BASE_API_URL = 'https://u.com';
-export const WORKFLOW_ELEMENTS = '/workflow-elements';
-export const WORKFLOW = '/workflow';
+export const BASE_API_URL = 'http://localhost:8000/api/workflow-builder';
+export const WORKFLOW_ELEMENTS = '/elements';
+export const WORKFLOW_FILES = '/files';

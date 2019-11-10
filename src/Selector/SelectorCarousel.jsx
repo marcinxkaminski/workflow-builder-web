@@ -6,7 +6,9 @@ import MaterialIcons from '../data/MaterialIcons';
 export const DEFAULT_VISIBLE_ITEMS_COUNT = 1;
 export const DEFAULT_ITEM_INDEX = 0;
 
-const getNextIndex = (idx, itemsCount, infinite) => {
+export const transformItemToDisplay = ({ name, materialIcon, description }) => ({ name, materialIcon, description });
+
+export const getNextIndex = (idx, itemsCount, infinite) => {
   if (idx < itemsCount - 1) {
     return idx + 1;
   } else if (infinite) {
@@ -16,7 +18,7 @@ const getNextIndex = (idx, itemsCount, infinite) => {
   }
 }
 
-const getPreviousIndex = (idx, itemsCount, infinite) => {
+export const getPreviousIndex = (idx, itemsCount, infinite) => {
   if (idx > 0) {
     return idx - 1;
   } else if (infinite) {
@@ -44,7 +46,7 @@ const SelectorCarousel = (props) => {
 
     if (visibleItemsCount === 1 || visibleItemsCount > itemsCount) {
       const item = items[activeItemIndex];
-      return <Card item={item} onAdd={() => onAdd(item)} customClasses='mx-auto' />;
+      return <Card item={transformItemToDisplay(item)} onAdd={() => onAdd(item)} customClasses='mx-auto' />;
     } else if (visibleItemsCount > 1) {
       const indexes = [getPreviousIndex(activeItemIndex, itemsCount, infinite)];
 
@@ -57,7 +59,7 @@ const SelectorCarousel = (props) => {
         const item = items[idx];
         return <Card
           key={idx}
-          item={item}
+          item={transformItemToDisplay(item)}
           onAdd={() => onAdd(item)}
           customClasses={isMainCard ? '' : 'element-card-small'}
           hideButtons={!isMainCard}

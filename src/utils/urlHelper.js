@@ -1,3 +1,3 @@
-export function buildUrl(baseUrl, endpointUrl, queryParams) {
-  return `${baseUrl}${endpointUrl}?${new URLSearchParams(queryParams).toString()}`;
+export function buildUrl(baseUrl, endpointUrl, queryParams = null) {
+  return `${baseUrl}${endpointUrl}${queryParams ? `?${new URLSearchParams(queryParams).toString()}` : '/'}`;
 }
