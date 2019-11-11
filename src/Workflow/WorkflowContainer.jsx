@@ -3,19 +3,20 @@ import { connect } from 'react-redux'
 import Button from '../Common/Button';
 import { bindActionCreators } from 'redux';
 import MaterialIcons from '../data/MaterialIcons';
-import { deleteWorkflowElement, submitWorkflow } from './workflowActions';
+import { deleteWorkflowElement, submitWorkflow, onlineProcessing } from './workflowActions';
 import WorkflowElementsList from './WorkflowElementsList';
+import { PENDING } from '../data/RequestStatuses';
 
 const WorkflowContainer = (props) => {
-  const { selectedWorkflowElements, deleteWorkflowElement, submitWorkflow } = props;
+  const { selectedWorkflowElements, deleteWorkflowElement, submitWorkflow, onlineProcessing } = props;
 
   return (
     <div className="container-fluid my-2">
-      <WorkflowElementsList items={selectedWorkflowElements} onDelete={deleteWorkflowElement} />
+      <WorkflowElementsList items={selectedWorkflowElements} onDelete={deleteWorkflowElement} onConfigChange={onlineProcessing} />
 
       <div className="row justify-content-center my-4">
         <div className="col text-center mb-5">
-          <Button icon={MaterialIcons.DOWNLOAD} loading={props.request.status} customClasses="mx-auto" onClick={submitWorkflow} shadow />
+          <Button icon={MaterialIcons.DOWNLOAD} loading={props.request.status === PENDING} customClasses="mx-auto" onClick={submitWorkflow} shadow />
         </div>
       </div>
 
@@ -26,7 +27,8 @@ const WorkflowContainer = (props) => {
 const mapStateToProps = ({ workflowState }) => workflowState;
 const mapDispatchToProps = dispatch => bindActionCreators({
   deleteWorkflowElement,
-  submitWorkflow
+  submitWorkflow,
+  onlineProcessing
 }, dispatch);
 
 export default memo(connect(mapStateToProps, mapDispatchToProps)(WorkflowContainer));

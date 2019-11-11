@@ -56,17 +56,17 @@ const renderDeleteButton = (onDelete) => (
   </div>
 );
 
-const renderConfig = (config, result = null) => (
-  <div className="card-footer p-0">
-    <textarea className="form-control" defaultValue={JSON.stringify(config)} />
-    <small className="text-muted">
-      Result: {result ? JSON.stringify(result) : null}
+const renderConfig = (config, onChange) => (
+  <div className="card-footer overflow-auto p-0 small font-weight-light">
+    <textarea className={`smallest form-control${config.isValid === false ? ' is-invalid' : ''}`} defaultValue={JSON.stringify(config.data)} onBlur={({ target }) => onChange(target.value)} />
+    <small className="text-muted small">
+      Result:<br /> {config.result ? JSON.stringify(config.result) : null}
     </small>
   </div>
 );
 
 const Card = (props) => {
-  const { item = {}, index, customClasses = '', hideButtons, onAdd, onDelete } = props;
+  const { item = {}, customClasses = '', hideButtons, onAdd, onDelete, onChange } = props;
 
   if (!Object.keys(item).length) {
     console.error('Cannot render card for this item:', item);
@@ -77,7 +77,7 @@ const Card = (props) => {
     <div className={`card element-card shadow text-center m-2 ${customClasses}`}>
       <div className="card-body">
 
-        {typeof index !== 'undefined' ? renderIndex(index) : null}
+        {typeof item.index !== 'undefined' ? renderIndex(item.index) : null}
         {item.name ? renderTitle(item.name) : null}
         {item.materialIcon ? renderIcon(item.materialIcon) : null}
         {item.description ? renderDescription(item.description) : null}
@@ -86,7 +86,7 @@ const Card = (props) => {
         {onDelete && !hideButtons ? renderDeleteButton(onDelete) : null}
 
       </div>
-      {Object.keys(item.config || {}).length ? renderConfig(item.config) : null}
+      {Object.keys(item.config || {}).length && onChange ? renderConfig(item.config, onChange) : null}
     </div>
   );
 };

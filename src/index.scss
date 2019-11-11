@@ -76,6 +76,10 @@ margin: 0;
   opacity: .5;
 }
 
+.smallest{
+  font-size: 11px;
+}
+
 // MAIN
 html, body {
   @extend .background-gradient-properties;

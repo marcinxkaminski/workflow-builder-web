@@ -15,8 +15,9 @@ export function getAvailableWorkflowElements() {
 }
 
 export function addWorkflowElement(item) {
+  const element = item;
   return {
     type: ActionTypes.ADD_WORKFLOW_ELEMENT,
-    payload: item,
+    payload: element,
   };
 }

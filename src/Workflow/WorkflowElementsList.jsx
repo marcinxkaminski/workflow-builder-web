@@ -1,18 +1,23 @@
 import React, { memo } from 'react';
 import Card from '../Common/Card';
 
-export const tranfsormItemToDisplay = ({ id, name, config: { data } }) => ({
-  id, name, config: data
-});
+export const tranfsormItemToDisplay = ({ id, name, config }, index) => ({ id, name, config, index });
 
 const WorkflowElementsList = (props) => {
-  const { items, onDelete } = props;
+  const { items, onDelete, onConfigChange } = props;
 
   return (
     <div className="row w-100 mx-auto justify-content-center align-items-center my-5">
-      {items.map((item, idx) => (
-        <Card key={idx} index={idx} item={tranfsormItemToDisplay(item)} onDelete={() => onDelete(idx)} />
-      ))}
+      {items.map((item, index) => {
+        const itemToDisplay = tranfsormItemToDisplay(item, index);
+        console.log(itemToDisplay);
+        return (
+          <Card
+            key={index}
+            item={itemToDisplay}
+            onDelete={() => onDelete(itemToDisplay)}
+            onChange={(data) => onConfigChange(itemToDisplay, data)} />)
+      })}
     </div>
   )
 }
