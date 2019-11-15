@@ -1,6 +1,9 @@
+/* global expect, describe, jest */
+
 import * as apiRequests from './apiRequests';
 import request from '../utils/request';
 import { buildUrl } from '../utils/urlHelper';
+// eslint-disable-next-line no-unused-vars
 import { BASE_API_URL } from './ApiEndpoints';
 
 jest.mock('../utils/request');

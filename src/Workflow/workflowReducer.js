@@ -1,4 +1,4 @@
-import ActionTypes from '../data/ActionTypes';
+import * as ActionTypes from '../data/ActionTypes';
 
 export const initialState = {
   request: {

@@ -1,4 +1,4 @@
-import ActionTypes from '../data/ActionTypes';
+import * as ActionTypes from '../data/ActionTypes';
 import { post, put } from '../api/apiRequests';
 import * as ApiEnpoints from '../api/ApiEndpoints';
 import requestDispatch from '../utils/requestDispatch';

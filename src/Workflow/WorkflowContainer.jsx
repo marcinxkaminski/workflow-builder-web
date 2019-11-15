@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { connect } from 'react-redux'
 import Button from '../Common/Button';
 import { bindActionCreators } from 'redux';
-import MaterialIcons from '../data/MaterialIcons';
+import * as MaterialIcons from '../data/MaterialIcons';
 import { deleteWorkflowElement, submitWorkflow, onlineProcessing } from './workflowActions';
 import WorkflowElementsList from './WorkflowElementsList';
 import { PENDING } from '../data/RequestStatuses';

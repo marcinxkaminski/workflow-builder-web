@@ -4,7 +4,7 @@ export const DEFAULT_ICON = 'help';
 export const LOADING_TEXT = 'Loading...';
 export const DEFAULT_CLASSES = 'btn btn-outline-light btn-circle';
 
-export const getButtonProps = ({ onClick, disabled }) => {
+const getButtonProps = ({ onClick, disabled }) => {
   const buttonProps = {}
 
   if (onClick) buttonProps.onClick = onClick;
@@ -13,13 +13,13 @@ export const getButtonProps = ({ onClick, disabled }) => {
   return buttonProps;
 };
 
-export const renderLoader = () => (
+const renderLoader = () => (
   <div className="loader spinner-border" role="status">
     <span className="sr-only">{LOADING_TEXT}</span>
   </div>
 );
 
-export const renderIcon = (icon) => (
+const renderIcon = (icon) => (
   <i className="material-icons">{icon || DEFAULT_ICON}</i>
 );
 

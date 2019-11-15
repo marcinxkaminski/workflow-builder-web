@@ -1,5 +1,5 @@
 import { get } from '../api/apiRequests';
-import ActionTypes from '../data/ActionTypes';
+import * as ActionTypes from '../data/ActionTypes';
 import * as ApiEnpoints from '../api/ApiEndpoints';
 import requestDispatch from '../utils/requestDispatch';
 import WorkflowElement from '../models/WorkflowElement';

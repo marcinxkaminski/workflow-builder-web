@@ -1,11 +1,11 @@
-class WorkflowElementError extends Error { }
+export class WorkflowElementError extends Error { }
 
-const ID_ERROR_MESSAGE = 'Invalid workflow element\'s ID';
-const NAME_ERROR_MESSAGE = 'Invalid workflow element\'s name';
+export const ID_ERROR_MESSAGE = 'Invalid workflow element\'s ID';
+export const NAME_ERROR_MESSAGE = 'Invalid workflow element\'s name';
 
 export default class WorkflowElement {
   constructor({
-    id, name, description = '', materialIcon = '', config = {},
+    id, name, description = null, materialIcon = null, config = null,
   }) {
     if (!id) throw new WorkflowElementError(ID_ERROR_MESSAGE);
     if (!name) throw new WorkflowElementError(NAME_ERROR_MESSAGE);

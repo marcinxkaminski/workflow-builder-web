@@ -1,7 +1,7 @@
 import React, { useState, memo } from 'react';
 import Card from '../Common/Card';
 import Button from '../Common/Button';
-import MaterialIcons from '../data/MaterialIcons';
+import * as MaterialIcons from '../data/MaterialIcons';
 
 export const DEFAULT_VISIBLE_ITEMS_COUNT = 1;
 export const DEFAULT_ITEM_INDEX = 0;

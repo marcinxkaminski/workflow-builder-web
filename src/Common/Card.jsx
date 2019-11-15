@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import Button from './Button';
-import MaterialIcons from '../data/MaterialIcons';
+import * as MaterialIcons from '../data/MaterialIcons';
 
 const renderIndex = (index) => (
   <div className="row justify-content-center">
@@ -82,8 +82,8 @@ const Card = (props) => {
         {item.materialIcon ? renderIcon(item.materialIcon) : null}
         {item.description ? renderDescription(item.description) : null}
 
-        {onAdd && !hideButtons ? renderAddButton(onAdd) : null}
-        {onDelete && !hideButtons ? renderDeleteButton(onDelete) : null}
+        {onAdd && !hideButtons && !onDelete ? renderAddButton(onAdd) : null}
+        {onDelete && !hideButtons && !onAdd ? renderDeleteButton(onDelete) : null}
 
       </div>
       {Object.keys(item.config || {}).length && onChange ? renderConfig(item.config, onChange) : null}

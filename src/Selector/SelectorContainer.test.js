@@ -1,5 +1,7 @@
+/* global expect, describe, jest */
+
 describe('SELECTOR CONTAINER', () => {
   it('', async () => {
-    expect(true).toBe(true);
+    // expect(false).toEqual(true);
   });
 });
