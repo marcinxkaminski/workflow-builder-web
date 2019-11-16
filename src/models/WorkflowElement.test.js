@@ -43,4 +43,12 @@ describe('WORKFLOW ELEMENT', () => {
     expect(element.materialIcon).toEqual(mockMaterialIcon);
     expect(element.config).toEqual(mockConfig);
   });
+
+  it('throws WorkflowElementError when no id passed', async () => {
+    expect(() => new WorkflowElement({ name: 'mock-name' })).toThrow(we.WorkflowElementError);
+  });
+
+  it('throws WorkflowElementError when no name passed', async () => {
+    expect(() => new WorkflowElement({ id: 'mock-id' })).toThrow(we.WorkflowElementError);
+  });
 });

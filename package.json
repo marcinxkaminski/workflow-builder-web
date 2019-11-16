@@ -5,9 +5,9 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-redux": "^7.1.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
     "react-scripts": "3.0.1",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0"
@@ -46,7 +46,15 @@
     "gh-pages": "^2.1.1",
     "node-sass": "^4.13.0",
     "redux-devtools": "^3.5.0",
-    "sass": "^1.23.1",
-    "snyk": "^1.239.5"
+    "sass": "^1.23.6",
+    "snyk": "^1.248.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "!src/index.jsx",
+      "!src/serviceWorker.js",
+      "!src/store.js",
+      "src/**/*.{js,jsx}"
+    ]
   }
 }

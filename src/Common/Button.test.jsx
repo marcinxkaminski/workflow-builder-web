@@ -1,4 +1,4 @@
-/* global expect, describe */
+/* global expect, describe, jest */
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import React from 'react';
@@ -80,5 +80,15 @@ describe('BUTTON', () => {
   it('renders disabled button', async () => {
     const button = renderButton({ disabled: true });
     expect(button.disabled).toEqual(true);
+  });
+
+  it('renders button with default params and handles on click action', async () => {
+    const onClickMocked = jest.fn();
+
+    const button = renderButton({ onClick: onClickMocked });
+    button.click();
+
+    expect(onClickMocked).toHaveBeenCalledTimes(1);
+
   });
 });

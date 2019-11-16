@@ -14,21 +14,15 @@ const SelectorContainer = (props) => {
     getAvailableWorkflowElements();
   }, []);
 
-  const renderCarousel = () => {
-    return !availableWorkflowElements.length ? null : (
-      <SelectorCarousel
-        itemsVisibleCount={VISIBLE_ITEMS_COUNT}
-        items={availableWorkflowElements}
-        onAdd={addWorkflowElement}
-        infinite
-      />
-    );
-  };
-
   return (
     <div id="selector" className="container-fluid w-100 shadow p-4 mb-2" >
       <div className="row">
-        {renderCarousel()}
+        <SelectorCarousel
+          itemsVisibleCount={VISIBLE_ITEMS_COUNT}
+          items={availableWorkflowElements}
+          onAdd={addWorkflowElement}
+          infinite
+        />
       </div>
     </div>
   );

@@ -69,8 +69,8 @@ const Card = (props) => {
   const { item = {}, customClasses = '', hideButtons, onAdd, onDelete, onChange } = props;
 
   if (!Object.keys(item).length) {
-    console.error('Cannot render card for this item:', item);
-    return null;
+    console.warn('Cannot render empty item ', item);
+    return;
   }
 
   return (
