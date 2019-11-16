@@ -32,6 +32,8 @@ const SelectorCarousel = (props) => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const { items, infinite, onAdd, itemsVisibleCount } = props;
 
+  if (!items.length) return;
+
   const next = async () => {
     setActiveItemIndex(getNextIndex(activeItemIndex, items.length, infinite));
   }

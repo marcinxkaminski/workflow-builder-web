@@ -1,9 +1,9 @@
 language: node_js
 node_js:
-  - "stable"
+  - 'stable'
 cache:
   directories:
-  - node_modules
+    - node_modules
 script:
   - npm run snyk
   - npm test
@@ -11,9 +11,11 @@ script:
   - npm run lint
   - npm run build
 deploy:
-  provider: pages
+  provider: netlify
+  site: workflowbuilder.netlify.com
+  auth: $deploy_token
+  edge: true # opt in to dpl v2
   skip_cleanup: true
-  github_token: $github_token
   local_dir: build
   on:
     branch: master

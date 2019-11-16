@@ -1,7 +1,7 @@
 # Marcin Kamiński - Engineer's Thesis
 ## Development of an web application to manage the machine learning process for Engineer's Thesis on AGH (University of Science and Technology) in Cracow.
 
-[![Build Status](https://travis-ci.com/xkamson/workflow-builder-web.svg?token=TWgUpUSCCjzdhcZucEuD&branch=master)](https://travis-ci.com/xkamson/workflow-builder-web) [![Known Vulnerabilities](https://snyk.io/package/npm/snyk/badge.svg)](https://snyk.io/package/npm/snyk)
+[![Build Status](https://travis-ci.com/xkamson/workflow-builder-web.svg?token=TWgUpUSCCjzdhcZucEuD&branch=master)](https://travis-ci.com/xkamson/workflow-builder-web) [![Known Vulnerabilities](https://snyk.io/package/npm/snyk/badge.svg)](https://snyk.io/package/npm/snyk) [![Netlify Status](https://api.netlify.com/api/v1/badges/24ab13f2-48ce-4cbc-9755-2b621d1bb9d3/deploy-status)](https://app.netlify.com/sites/workflowbuilder/deploys)
 
 
 ### Installing

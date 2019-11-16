@@ -21,7 +21,6 @@
     "lint": "eslint './src/{app,tests}/**/*.{js,jsx}'",
     "lint:fix": "eslint --fix './src/{app,tests}/**/*.{js,jsx}'",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "snyk": "snyk test",
     "snyk:fix": "snyk protect"
   },
@@ -43,7 +42,6 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.16.0",
-    "gh-pages": "^2.1.1",
     "node-sass": "^4.13.0",
     "redux-devtools": "^3.5.0",
     "sass": "^1.23.6",
