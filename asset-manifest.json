@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/ml-web/static/css/main.79678b49.chunk.css",
-    "main.js": "/ml-web/static/js/main.e965dd33.chunk.js",
-    "main.js.map": "/ml-web/static/js/main.e965dd33.chunk.js.map",
-    "runtime~main.js": "/ml-web/static/js/runtime~main.a5d6bb10.js",
-    "runtime~main.js.map": "/ml-web/static/js/runtime~main.a5d6bb10.js.map",
-    "static/css/2.22a7d4ef.chunk.css": "/ml-web/static/css/2.22a7d4ef.chunk.css",
-    "static/js/2.a8a97971.chunk.js": "/ml-web/static/js/2.a8a97971.chunk.js",
-    "static/js/2.a8a97971.chunk.js.map": "/ml-web/static/js/2.a8a97971.chunk.js.map",
-    "index.html": "/ml-web/index.html",
-    "precache-manifest.48edd3ac9cf90a807adb73a52f5e43cb.js": "/ml-web/precache-manifest.48edd3ac9cf90a807adb73a52f5e43cb.js",
-    "service-worker.js": "/ml-web/service-worker.js",
-    "static/css/2.22a7d4ef.chunk.css.map": "/ml-web/static/css/2.22a7d4ef.chunk.css.map",
-    "static/css/main.79678b49.chunk.css.map": "/ml-web/static/css/main.79678b49.chunk.css.map"
+    "main.css": "/workflow-builder-web/static/css/main.79678b49.chunk.css",
+    "main.js": "/workflow-builder-web/static/js/main.3f466062.chunk.js",
+    "main.js.map": "/workflow-builder-web/static/js/main.3f466062.chunk.js.map",
+    "runtime~main.js": "/workflow-builder-web/static/js/runtime~main.6784e263.js",
+    "runtime~main.js.map": "/workflow-builder-web/static/js/runtime~main.6784e263.js.map",
+    "static/css/2.22a7d4ef.chunk.css": "/workflow-builder-web/static/css/2.22a7d4ef.chunk.css",
+    "static/js/2.a8a97971.chunk.js": "/workflow-builder-web/static/js/2.a8a97971.chunk.js",
+    "static/js/2.a8a97971.chunk.js.map": "/workflow-builder-web/static/js/2.a8a97971.chunk.js.map",
+    "index.html": "/workflow-builder-web/index.html",
+    "precache-manifest.c36ce821b36ec67058cbd3ee9b95a9e7.js": "/workflow-builder-web/precache-manifest.c36ce821b36ec67058cbd3ee9b95a9e7.js",
+    "service-worker.js": "/workflow-builder-web/service-worker.js",
+    "static/css/2.22a7d4ef.chunk.css.map": "/workflow-builder-web/static/css/2.22a7d4ef.chunk.css.map",
+    "static/css/main.79678b49.chunk.css.map": "/workflow-builder-web/static/css/main.79678b49.chunk.css.map"
   }
 }
