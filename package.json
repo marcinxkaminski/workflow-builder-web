@@ -1,6 +1,6 @@
 {
-  "homepage": "https://xkamson.github.io/ml-web/",
-  "name": "ml-web",
+  "homepage": "https://xkamson.github.io/workflow-builder-web/",
+  "name": "workflow-builder-web",
   "version": "0.1.1",
   "private": true,
   "dependencies": {
