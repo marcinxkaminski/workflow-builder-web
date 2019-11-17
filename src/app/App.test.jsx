@@ -4,11 +4,11 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import React from 'react';
 import App from './App';
-import WorkflowContainer from '../Workflow/WorkflowContainer';
 import SelectorContainer from '../Selector/SelectorContainer';
+import WorkflowContainer from '../Workflow/WorkflowContainer';
 
-jest.mock('../Workflow/WorkflowContainer');
-jest.mock('../Selector/SelectorContainer');
+jest.mock('../Selector/SelectorContainer', () => (...prop) => <span>SelectorContainer</span>);
+jest.mock('../Workflow/WorkflowContainer', () => (...prop) => <span>WorkflowContainer</span>);
 
 describe('APP', () => {
   let container = null;
@@ -29,7 +29,8 @@ describe('APP', () => {
       render(<App />, container);
     });
 
-    expect(container.querySelector('WorkflowContainer')).toBeDefined();
-    expect(container.querySelector('SelectorContainer')).toBeDefined();
+    const spans = container.querySelectorAll('span');
+    expect(spans[0].innerHTML).toEqual('SelectorContainer');
+    expect(spans[1].innerHTML).toEqual('WorkflowContainer');
   });
 });

@@ -48,7 +48,7 @@ describe('CARD', () => {
 
   it('renders default card without any props', async () => {
     const card = renderCard({ item: mockItem });
-    expect(!!card).toEqual(true);
+    expect(!!card).toBe(true);
   });
 
   it('renders default card without any props and with item index', async () => {
@@ -95,7 +95,7 @@ describe('CARD', () => {
     const textarea = card.querySelector('textarea');
     const resultDiv = card.getElementsByClassName('text-muted small')[0];
 
-    expect(textarea.classList.contains('is-invalid')).toEqual(false);
+    expect(textarea.classList.contains('is-invalid')).toBe(false);
     expect(textarea.value).toEqual(JSON.stringify(mockConfigData));
     expect(resultDiv.innerHTML).toEqual(`Result:<br> ${JSON.stringify(mockConfigResults)}`);
 
@@ -114,7 +114,7 @@ describe('CARD', () => {
     const card = renderCard({ item: mockItem, onChange: mockOnChange });
     const textarea = card.querySelector('textarea');
 
-    expect(textarea.classList.contains('is-invalid')).toEqual(true);
+    expect(textarea.classList.contains('is-invalid')).toBe(true);
     expect(textarea.value).toEqual(JSON.stringify(mockConfigData));
   });
 
@@ -140,7 +140,7 @@ describe('CARD', () => {
     const mockedCustomClass = 'myextraordinarymockedcustomclass';
 
     const card = renderCard({ item: mockItem, customClasses: mockedCustomClass }).getElementsByClassName(mockedCustomClass)[0];
-    expect(!!card).toEqual(true);
+    expect(!!card).toBe(true);
   });
 
   it('renders no buttons when passed both add and delete functions', async () => {
@@ -149,7 +149,7 @@ describe('CARD', () => {
 
     const button = renderCard({ item: mockItem, onDelete: mockOnDelete, onAdd: mockOnAdd }).querySelector('Button');
 
-    expect(!!button).toEqual(false);
+    expect(!!button).toBe(false);
   });
 
   it('not renders any card when item is empty', async () => {
@@ -157,6 +157,6 @@ describe('CARD', () => {
     const cardBody = renderCard({}).getElementsByClassName('card-body')[0];
 
     expect(console.warn).toHaveBeenCalledTimes(1);
-    expect(!!cardBody).toEqual(false);
+    expect(!!cardBody).toBe(false);
   });
 });

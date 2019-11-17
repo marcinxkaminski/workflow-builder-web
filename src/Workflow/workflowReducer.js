@@ -13,12 +13,12 @@ export default function workflowReducer(state = initialState, { type, payload })
   switch (type) {
     case ActionTypes.ADD_WORKFLOW_ELEMENT:
       return Object.assign({}, state, {
-        selectedWorkflowElements: state.selectedWorkflowElements.concat(payload), workflowId: '',
+        selectedWorkflowElements: state.selectedWorkflowElements.concat(payload), workflowId: null,
       });
 
     case ActionTypes.DELETE_WORKFLOW_ELEMENT:
       return Object.assign({}, state, {
-        selectedWorkflowElements: state.selectedWorkflowElements.filter((_, idx) => idx !== payload), workflowId: '',
+        selectedWorkflowElements: state.selectedWorkflowElements.filter((_, idx) => idx !== payload), workflowId: null,
       });
 
     case ActionTypes.GET_RESULTS_FOR_DATA_SUCCESS:
@@ -28,7 +28,7 @@ export default function workflowReducer(state = initialState, { type, payload })
           error: payload.error,
         },
         selectedWorkflowElements: state.selectedWorkflowElements.map((e, idx) => {
-          if (idx === payload.data.index) {
+          if (idx === payload.data.index && e.config) {
             e.config.result = payload.data.result;
             e.config.isValid = payload.data.isValid;
           }

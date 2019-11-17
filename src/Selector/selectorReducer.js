@@ -12,12 +12,12 @@ export default function selectorReducer(state = initialState, { type, payload })
   switch (type) {
     case ActionTypes.GET_AVAILABLE_WORKFLOW_ELEMENTS:
       return Object.assign({}, state, {
-        request: { status: payload.status, error: '' },
+        request: { status: payload.status, error: null },
       });
 
     case ActionTypes.GET_AVAILABLE_WORKFLOW_ELEMENTS_SUCCESS:
       return Object.assign({}, state, {
-        request: { status: payload.status, error: '' },
+        request: { status: payload.status, error: null },
         availableWorkflowElements: payload.data,
       });
 

@@ -79,7 +79,7 @@ describe('BUTTON', () => {
 
   it('renders disabled button', async () => {
     const button = renderButton({ disabled: true });
-    expect(button.disabled).toEqual(true);
+    expect(button.disabled).toBe(true);
   });
 
   it('renders button with default params and handles on click action', async () => {

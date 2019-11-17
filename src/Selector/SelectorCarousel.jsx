@@ -3,12 +3,13 @@ import Card from '../Common/Card';
 import Button from '../Common/Button';
 import * as MaterialIcons from '../data/MaterialIcons';
 
+export const DEFAULT_INFINITE_STATE = true;
 export const DEFAULT_VISIBLE_ITEMS_COUNT = 1;
 export const DEFAULT_ITEM_INDEX = 0;
 
 export const transformItemToDisplay = ({ name, materialIcon, description }) => ({ name, materialIcon, description });
 
-export const getNextIndex = (idx, itemsCount, infinite) => {
+export const getNextIndex = (idx, itemsCount, infinite = DEFAULT_INFINITE_STATE) => {
   if (idx < itemsCount - 1) {
     return idx + 1;
   } else if (infinite) {
@@ -18,7 +19,7 @@ export const getNextIndex = (idx, itemsCount, infinite) => {
   }
 }
 
-export const getPreviousIndex = (idx, itemsCount, infinite) => {
+export const getPreviousIndex = (idx, itemsCount, infinite = DEFAULT_INFINITE_STATE) => {
   if (idx > 0) {
     return idx - 1;
   } else if (infinite) {
@@ -30,9 +31,11 @@ export const getPreviousIndex = (idx, itemsCount, infinite) => {
 
 const SelectorCarousel = (props) => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
-  const { items, infinite, onAdd, itemsVisibleCount } = props;
+  const {
+    items = [], infinite = DEFAULT_INFINITE_STATE, onAdd = null, itemsVisibleCount = DEFAULT_VISIBLE_ITEMS_COUNT
+  } = props;
 
-  if (!items.length) return;
+  if (!items.length || !onAdd) return;
 
   const next = async () => {
     setActiveItemIndex(getNextIndex(activeItemIndex, items.length, infinite));
@@ -43,13 +46,13 @@ const SelectorCarousel = (props) => {
   }
 
   const renderCards = () => {
-    const visibleItemsCount = itemsVisibleCount || DEFAULT_VISIBLE_ITEMS_COUNT;
+    const visibleItemsCount = itemsVisibleCount;
     const itemsCount = items.length;
 
     if (visibleItemsCount === 1 || visibleItemsCount > itemsCount) {
       const item = items[activeItemIndex];
       return <Card item={transformItemToDisplay(item)} onAdd={() => onAdd(item)} customClasses='mx-auto' />;
-    } else if (visibleItemsCount > 1) {
+    } else {
       const indexes = [getPreviousIndex(activeItemIndex, itemsCount, infinite)];
 
       for (var i = 0; i < visibleItemsCount - 1; ++i) {
@@ -59,10 +62,11 @@ const SelectorCarousel = (props) => {
       return indexes.map((idx, i) => {
         const isMainCard = i === Math.floor(indexes.length / 2);
         const item = items[idx];
+        const addItemToWorkflow = () => onAdd(item);
         return <Card
           key={idx}
           item={transformItemToDisplay(item)}
-          onAdd={() => onAdd(item)}
+          onAdd={addItemToWorkflow}
           customClasses={isMainCard ? '' : 'element-card-small'}
           hideButtons={!isMainCard}
         />

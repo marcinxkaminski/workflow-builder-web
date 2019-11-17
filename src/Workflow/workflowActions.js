@@ -3,8 +3,9 @@ import { post, put } from '../api/apiRequests';
 import * as ApiEnpoints from '../api/ApiEndpoints';
 import requestDispatch from '../utils/requestDispatch';
 import { openUrlInNewTab } from '../utils/windowHelper';
+import { buildUrl } from '../utils/urlHelper';
 
-export function transformSelectedWorkglowElementsForSubmit(elements) {
+export function transformSelectedWorkflowElementsForSubmit(elements) {
   return elements.map(({ id }) => ({ id }));
 }
 
@@ -27,18 +28,17 @@ export function deleteWorkflowElement(item) {
   };
 }
 
+export async function processOnlineInApi(data, item) {
+  let result = null;
+  const isValid = validateDataToGetResult(data, item.config);
+  if (isValid) {
+    result = await put(ApiEnpoints.WORKFLOW_ELEMENTS, { id: item.id, data: JSON.parse(data) });
+  }
+  return { index: item.index, result, isValid };
+}
+
 export function onlineProcessing(item, data) {
-  return requestDispatch(
-    ActionTypes.GET_RESULTS_FOR_DATA,
-    async () => {
-      let result = null;
-      const isValid = validateDataToGetResult(data, item.config);
-      if (isValid) {
-        result = await put(ApiEnpoints.WORKFLOW_ELEMENTS, { id: item.id, data: JSON.parse(data) });
-      }
-      return { index: item.index, result, isValid };
-    },
-  );
+  return requestDispatch(ActionTypes.GET_RESULTS_FOR_DATA, () => processOnlineInApi(data, item));
 }
 
 export function submitWorkflow() {
@@ -47,7 +47,7 @@ export function submitWorkflow() {
     let finalId = workflowId;
 
     if (!finalId) {
-      const elements = transformSelectedWorkglowElementsForSubmit(selectedWorkflowElements);
+      const elements = transformSelectedWorkflowElementsForSubmit(selectedWorkflowElements);
       finalId = await dispatch(requestDispatch(
         ActionTypes.SUBMIT_WORKFLOW,
         async () => {
@@ -57,6 +57,7 @@ export function submitWorkflow() {
       ));
     }
 
-    openUrlInNewTab(`${ApiEnpoints.BASE_API_URL}${ApiEnpoints.WORKFLOW_FILES}?id=${finalId}`);
+
+    openUrlInNewTab(buildUrl(ApiEnpoints.BASE_API_URL, ApiEnpoints.WORKFLOW_FILES, { id: finalId }));
   };
 }
