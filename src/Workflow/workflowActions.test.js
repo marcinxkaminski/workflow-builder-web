@@ -7,10 +7,13 @@ import requestDispatch from '../utils/requestDispatch';
 import { openUrlInNewTab } from '../utils/windowHelper';
 import { buildUrl } from '../utils/urlHelper';
 
-jest.mock('../utils/requestDispatch');
+jest.mock('../utils/requestDispatch', () => jest.fn());
 jest.mock('../utils/windowHelper', () => ({ openUrlInNewTab: jest.fn() }));
-jest.mock('../api/apiRequests', () => ({ post: jest.fn(), put: jest.fn(async () => 'mock-result') }));
-jest.mock('../utils/urlHelper', () => ({ buildUrl: jest.fn((...params) => params[2]) }));
+jest.mock('../api/apiRequests', () => ({
+  post: jest.fn(async () => ({ id: 'mock-workflow-id' })),
+  put: jest.fn(async () => 'mock-result'),
+}));
+jest.mock('../utils/urlHelper', () => ({ buildUrl: jest.fn((...params) => params[2].id) }));
 jest.mock('../data/ActionTypes', () => ({
   GET_AVAILABLE_WORKFLOW_ELEMENTS: 'GET_AVAILABLE_WORKFLOW_ELEMENTS', ADD_WORKFLOW_ELEMENT: 'ADD_WORKFLOW_ELEMENT',
 }));
@@ -20,6 +23,14 @@ jest.mock('../api/ApiEndpoints', () => ({
 }));
 
 describe('WORKFLOW ACTIONS', () => {
+  beforeEach(() => {
+    requestDispatch.mockClear();
+    openUrlInNewTab.mockClear();
+    buildUrl.mockClear();
+    post.mockClear();
+    put.mockClear();
+  });
+
   it('transforms selected elements for submit', async () => {
     const mockItems = [{ id: 'id1', name: 'name1' }, { id: 'id1', name: 'name1' }, { id: 'id1', name: 'name1' }];
     const mockItemsIds = mockItems.map(i => ({ id: i.id }));
@@ -56,7 +67,7 @@ describe('WORKFLOW ACTIONS', () => {
     const mockItem = { id: 0, name: 'mock-name', config: { data: { some: 'mocked' } } };
     actions.validateDataToGetResult = jest.fn(() => true);
 
-    const res = await actions.processOnlineInApi(JSON.stringify(mockData), mockItem);
+    const res = await actions.processOnlineInApi({ data: JSON.stringify(mockData), item: mockItem });
     expect(put).toHaveBeenCalledWith(ApiEnpoints.WORKFLOW_ELEMENTS, { id: mockItem.id, data: mockData });
     expect(res).toEqual({ index: mockItem.index, result: 'mock-result', isValid: true });
   });
@@ -64,20 +75,57 @@ describe('WORKFLOW ACTIONS', () => {
   it('dispatches request for online processing', async () => {
     const mockData = { some: 'mock' };
     const mockItem = { id: 0, name: 'mock-name', config: { data: { some: 'mocked' } } };
-    actions.processOnlineInApi = jest.fn();
 
     actions.onlineProcessing(mockItem, JSON.stringify(mockData));
-    expect(requestDispatch).toHaveBeenCalledTimes(1);
+    expect(requestDispatch).toHaveBeenCalledWith(
+      ActionTypes.GET_RESULTS_FOR_DATA,
+      actions.processOnlineInApi,
+      { data: JSON.stringify(mockData), item: mockItem },
+    );
   });
 
-  it('submits workflow', async () => {
-    const mockItems = [{ id: 'mock-id', name: 'mock-name', config: { data: { some: 'mock' } } }];
-    const mockWorkflowId = 'mock-id';
-    const mockDispatch = jest.fn();
-    const mockGetState = jest.fn(() => ({ selectedWorkflowElements: mockItems, workflowId: mockWorkflowId }));
+  it('sends request to submit workflow in API and gets id of created workflow', async () => {
+    const mockItems = [{ id: 'mock-id', name: 'mock-name' }, { id: 'mock-id2', name: 'mock-name2' }];
 
-    // TODO: finish it
-    // actions.transformSelectedWorkflowElementsForSubmit = jest.fn();
-    // actions.submitWorkflow()(mockDispatch, mockGetState);
+    actions.submitWorkflowInApi({ elements: mockItems });
+
+    expect(post).toHaveBeenCalledWith(ApiEnpoints.WORKFLOW_ELEMENTS, { elements: mockItems });
+  });
+
+  it('submits workflow when worklfow id is not set', async () => {
+    const mockItems = [{ id: 'mock-id', name: 'mock-name', config: { data: { some: 'mock' } } }];
+    const mockWorkflowId = 'mocked-workflow-id';
+    const mockDispatch = jest.fn();
+    const mockGetState = jest.fn(() => ({
+      workflowState: { selectedWorkflowElements: mockItems },
+    }));
+
+    actions.transformSelectedWorkflowElementsForSubmit = jest.fn();
+    await actions.submitWorkflow()(mockDispatch, mockGetState);
+
+    // expect(actions.transformSelectedWorkflowElementsForSubmit).toHaveBeenCalledWith(mockItems);
+    expect(requestDispatch).toHaveBeenCalledWith(
+      ActionTypes.SUBMIT_WORKFLOW,
+      actions.submitWorkflowInApi,
+      { elements: mockItems },
+    );
+    expect(buildUrl).toHaveBeenCalledWith(ApiEnpoints.BASE_API_URL, ApiEnpoints.WORKFLOW_FILES, { id: 'mock-workflow-id' });
+    expect(openUrlInNewTab).toHaveBeenCalledWith(mockWorkflowId);
+  });
+
+  it('submits workflow when worklfow id is set and immediately opens new window', async () => {
+    const mockItems = [{ id: 'mock-id', name: 'mock-name', config: { data: { some: 'mock' } } }];
+    const mockWorkflowId = 'mock-wf-id';
+    const mockDispatch = jest.fn();
+    const mockGetState = jest.fn(() => ({
+      workflowState: { selectedWorkflowElements: mockItems, workflowId: mockWorkflowId },
+    }));
+
+    actions.transformSelectedWorkflowElementsForSubmit = jest.fn();
+    await actions.submitWorkflow()(mockDispatch, mockGetState);
+
+    expect(mockDispatch).not.toHaveBeenCalled();
+    expect(buildUrl).toHaveBeenCalledWith(ApiEnpoints.BASE_API_URL, ApiEnpoints.WORKFLOW_FILES, { id: 'mock-wf-id' });
+    expect(openUrlInNewTab).toHaveBeenCalledWith(mockWorkflowId);
   });
 });

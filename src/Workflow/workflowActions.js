@@ -28,7 +28,7 @@ export function deleteWorkflowElement(item) {
   };
 }
 
-export async function processOnlineInApi(data, item) {
+export async function processOnlineInApi({ data, item }) {
   let result = null;
   const isValid = validateDataToGetResult(data, item.config);
   if (isValid) {
@@ -38,26 +38,26 @@ export async function processOnlineInApi(data, item) {
 }
 
 export function onlineProcessing(item, data) {
-  return requestDispatch(ActionTypes.GET_RESULTS_FOR_DATA, () => processOnlineInApi(data, item));
+  return requestDispatch(ActionTypes.GET_RESULTS_FOR_DATA, processOnlineInApi, { data, item });
+}
+
+export async function submitWorkflowInApi({ elements }) {
+  const { id } = await post(ApiEnpoints.WORKFLOW_ELEMENTS, { elements });
+  return id;
 }
 
 export function submitWorkflow() {
   return async (dispatch, getState) => {
     const { selectedWorkflowElements = [], workflowId } = getState().workflowState;
-    let finalId = workflowId;
+    let id = workflowId;
 
-    if (!finalId) {
+    if (!id) {
       const elements = transformSelectedWorkflowElementsForSubmit(selectedWorkflowElements);
-      finalId = await dispatch(requestDispatch(
-        ActionTypes.SUBMIT_WORKFLOW,
-        async () => {
-          const { id } = await post(ApiEnpoints.WORKFLOW_ELEMENTS, { elements });
-          return id;
-        },
-      ));
+      id = await dispatch(requestDispatch(ActionTypes.SUBMIT_WORKFLOW, submitWorkflowInApi, { elements }));
     }
 
-
-    openUrlInNewTab(buildUrl(ApiEnpoints.BASE_API_URL, ApiEnpoints.WORKFLOW_FILES, { id: finalId }));
+    console.log('before', ApiEnpoints.BASE_API_URL, ApiEnpoints.WORKFLOW_FILES, { id });
+    console.log('after', buildUrl(ApiEnpoints.BASE_API_URL, ApiEnpoints.WORKFLOW_FILES, { id }));
+    openUrlInNewTab(buildUrl(ApiEnpoints.BASE_API_URL, ApiEnpoints.WORKFLOW_FILES, { id }));
   };
 }

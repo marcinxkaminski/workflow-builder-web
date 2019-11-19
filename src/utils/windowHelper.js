@@ -1,8 +1,9 @@
 /* global window */
 
 export function openUrlInNewTab(url) {
-  const tab = window.open(url, '_blank');
-  return tab.focus();
+  if (!url) { return; }
+
+  window.open(url, '_blank').focus();
 }
 
 export function getWindowWidth() {

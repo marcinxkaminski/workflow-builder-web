@@ -10,7 +10,6 @@ const WorkflowElementsList = (props) => {
     <div className="row w-100 mx-auto justify-content-center align-items-center my-5">
       {items.map((item, index) => {
         const itemToDisplay = tranfsormItemToDisplay(item, index);
-        console.log(itemToDisplay);
         return (
           <Card
             key={index}
