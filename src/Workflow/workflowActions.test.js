@@ -38,6 +38,15 @@ describe('WORKFLOW ACTIONS', () => {
     expect(actions.transformSelectedWorkflowElementsForSubmit(mockItems)).toEqual(mockItemsIds);
   });
 
+  it('validates data to get result and throws error', async () => {
+    const mockData = null;
+    const mockConfig = { data: { some: 'mock' } };
+
+    console.warn = jest.fn();
+    expect(actions.validateDataToGetResult(mockData, mockConfig)).toBe(false);
+    expect(console.warn).toHaveBeenCalledTimes(1);
+  });
+
   it('validates data to get result and returns info that it is valid', async () => {
     const mockData = JSON.stringify({ some: 'mock' });
     const mockConfig = { data: { some: 'mock' } };
@@ -94,22 +103,21 @@ describe('WORKFLOW ACTIONS', () => {
 
   it('submits workflow when worklfow id is not set', async () => {
     const mockItems = [{ id: 'mock-id', name: 'mock-name', config: { data: { some: 'mock' } } }];
+    const transformedItems = mockItems.map(i => ({ id: i.id }));
     const mockWorkflowId = 'mocked-workflow-id';
-    const mockDispatch = jest.fn();
+    const mockDispatch = jest.fn(async () => mockWorkflowId);
     const mockGetState = jest.fn(() => ({
-      workflowState: { selectedWorkflowElements: mockItems },
+      workflowState: { selectedWorkflowElements: mockItems, workflowId: null },
     }));
 
-    actions.transformSelectedWorkflowElementsForSubmit = jest.fn();
     await actions.submitWorkflow()(mockDispatch, mockGetState);
 
-    // expect(actions.transformSelectedWorkflowElementsForSubmit).toHaveBeenCalledWith(mockItems);
     expect(requestDispatch).toHaveBeenCalledWith(
       ActionTypes.SUBMIT_WORKFLOW,
       actions.submitWorkflowInApi,
-      { elements: mockItems },
+      { elements: transformedItems },
     );
-    expect(buildUrl).toHaveBeenCalledWith(ApiEnpoints.BASE_API_URL, ApiEnpoints.WORKFLOW_FILES, { id: 'mock-workflow-id' });
+    expect(buildUrl).toHaveBeenCalledWith(ApiEnpoints.BASE_API_URL, ApiEnpoints.WORKFLOW_FILES, { id: mockWorkflowId });
     expect(openUrlInNewTab).toHaveBeenCalledWith(mockWorkflowId);
   });
 

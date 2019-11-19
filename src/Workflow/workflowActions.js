@@ -5,7 +5,7 @@ import requestDispatch from '../utils/requestDispatch';
 import { openUrlInNewTab } from '../utils/windowHelper';
 import { buildUrl } from '../utils/urlHelper';
 
-export function transformSelectedWorkflowElementsForSubmit(elements) {
+export function transformSelectedWorkflowElementsForSubmit(elements = []) {
   return elements.map(({ id }) => ({ id }));
 }
 
@@ -48,7 +48,7 @@ export async function submitWorkflowInApi({ elements }) {
 
 export function submitWorkflow() {
   return async (dispatch, getState) => {
-    const { selectedWorkflowElements = [], workflowId } = getState().workflowState;
+    const { selectedWorkflowElements, workflowId } = getState().workflowState;
     let id = workflowId;
 
     if (!id) {
@@ -56,8 +56,6 @@ export function submitWorkflow() {
       id = await dispatch(requestDispatch(ActionTypes.SUBMIT_WORKFLOW, submitWorkflowInApi, { elements }));
     }
 
-    console.log('before', ApiEnpoints.BASE_API_URL, ApiEnpoints.WORKFLOW_FILES, { id });
-    console.log('after', buildUrl(ApiEnpoints.BASE_API_URL, ApiEnpoints.WORKFLOW_FILES, { id }));
     openUrlInNewTab(buildUrl(ApiEnpoints.BASE_API_URL, ApiEnpoints.WORKFLOW_FILES, { id }));
   };
 }

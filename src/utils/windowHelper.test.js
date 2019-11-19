@@ -2,6 +2,14 @@
 import { openUrlInNewTab, getWindowWidth } from './windowHelper';
 
 describe('WINDOW HELPER', () => {
+  it('doesn\'t open url in new tab when url is empty', async () => {
+    const mockUrl = '';
+
+    window.open = jest.fn();
+    openUrlInNewTab(mockUrl);
+    expect(window.open).not.toBeCalled();
+  });
+
   it('opens url in new tab', async () => {
     const focusMock = jest.fn();
     window.open = jest.fn(() => ({ focus: focusMock }));
