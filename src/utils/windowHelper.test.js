@@ -1,13 +1,35 @@
 /* global expect, describe, jest, window */
-import { openUrlInNewTab, getWindowWidth } from './windowHelper';
+import { openUrlInNewTab, getWindowWidth, cannotOpenUrlInNewTabWarning } from './windowHelper';
 
 describe('WINDOW HELPER', () => {
+  it('warns that url cannot be opened in the new tab', async () => {
+    const mockUrl = 'mockUrl';
+    console.warn = jest.fn();
+
+    cannotOpenUrlInNewTabWarning(mockUrl);
+    expect(console.warn).toHaveBeenCalledWith(`Cannot open ${mockUrl} in the new tab.`);
+  });
+
   it('doesn\'t open url in new tab when url is empty', async () => {
     const mockUrl = '';
 
+    console.warn = jest.fn();
     window.open = jest.fn();
+
     openUrlInNewTab(mockUrl);
     expect(window.open).not.toBeCalled();
+    expect(console.warn).toHaveBeenCalledWith(`Cannot open ${mockUrl} in the new tab.`);
+  });
+
+  it('doesn\'t open url in new tab when window.open returns nothing', async () => {
+    const mockUrl = 'someUrl';
+
+    window.open = jest.fn();
+    console.warn = jest.fn();
+    openUrlInNewTab(mockUrl);
+
+    expect(window.open).toBeCalledTimes(1);
+    expect(console.warn).toHaveBeenCalledWith(`Cannot open ${mockUrl} in the new tab.`);
   });
 
   it('opens url in new tab', async () => {

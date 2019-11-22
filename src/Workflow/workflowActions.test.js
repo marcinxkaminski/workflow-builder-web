@@ -36,6 +36,7 @@ describe('WORKFLOW ACTIONS', () => {
     const mockItemsIds = mockItems.map(i => ({ id: i.id }));
 
     expect(actions.transformSelectedWorkflowElementsForSubmit(mockItems)).toEqual(mockItemsIds);
+    expect(actions.transformSelectedWorkflowElementsForSubmit()).toEqual([]);
   });
 
   it('validates data to get result and throws error', async () => {
@@ -80,6 +81,17 @@ describe('WORKFLOW ACTIONS', () => {
     expect(put).toHaveBeenCalledWith(ApiEnpoints.WORKFLOW_ELEMENTS, { id: mockItem.id, data: mockData });
     expect(res).toEqual({ index: mockItem.index, result: 'mock-result', isValid: true });
   });
+
+  it('doesn\'t send request for processing online cause data is invalid', async () => {
+    const mockData = { some: 'mock' };
+    const mockItem = { id: 0, name: 'mock-name', config: { data: { some: 'mocked', additional: 'invalid' } } };
+    actions.validateDataToGetResult = jest.fn(() => false);
+
+    const res = await actions.processOnlineInApi({ data: JSON.stringify(mockData), item: mockItem });
+    expect(put).not.toBeCalled();
+    expect(res).toEqual({ index: mockItem.index, result: null, isValid: false });
+  });
+
 
   it('dispatches request for online processing', async () => {
     const mockData = { some: 'mock' };

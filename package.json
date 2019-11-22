@@ -45,8 +45,8 @@
     "node-sass": "^4.13.0",
     "redux-devtools": "^3.5.0",
     "redux-mock-store": "^1.5.3",
-    "sass": "^1.23.6",
-    "snyk": "^1.248.0"
+    "sass": "^1.23.7",
+    "snyk": "^1.251.0"
   },
   "jest": {
     "collectCoverageFrom": [

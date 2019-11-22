@@ -5,20 +5,19 @@ import { getAvailableWorkflowElements, addWorkflowElement } from './selectorActi
 import SelectorCarousel from './SelectorCarousel';
 import { getWindowWidth } from '../utils/windowHelper';
 
-const VISIBLE_ITEMS_COUNT = getWindowWidth() <= 768 ? 1 : 3;
+export const getVisibleItemsCount = () => getWindowWidth() <= 768 ? 1 : 3;
 
-const SelectorContainer = (props) => {
+export const SelectorContainer = (props) => {
+  /* istanbul ignore next */
   const { availableWorkflowElements, addWorkflowElement, getAvailableWorkflowElements } = props;
 
-  useEffect(() => {
-    getAvailableWorkflowElements();
-  }, []);
+  useEffect(getAvailableWorkflowElements, []);
 
   return (
     <div id="selector" className="container-fluid w-100 shadow p-4 mb-2" >
       <div className="row">
         <SelectorCarousel
-          itemsVisibleCount={VISIBLE_ITEMS_COUNT}
+          itemsVisibleCount={getVisibleItemsCount()}
           items={availableWorkflowElements}
           onAdd={addWorkflowElement}
           infinite
