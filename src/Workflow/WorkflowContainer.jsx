@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 import Button from '../Common/Button';
 import { DOWNLOAD } from '../data/MaterialIcons';
 import { deleteWorkflowElement, submitWorkflow, onlineProcessing } from './workflowActions';

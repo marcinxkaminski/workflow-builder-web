@@ -2,7 +2,7 @@
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import React from 'react';
-import App from './App'; // eslint-disable-line import/no-unresolved
+import App from './app'; // eslint-disable-line import/no-unresolved
 import Selector from '../Selector/SelectorContainer'; // eslint-disable-line no-unused-vars
 import Workflow from '../Workflow/WorkflowContainer'; // eslint-disable-line no-unused-vars
 
