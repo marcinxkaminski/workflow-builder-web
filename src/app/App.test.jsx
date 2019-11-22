@@ -1,14 +1,15 @@
 /* global expect, describe, jest */
-
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import React from 'react';
-import App from './App';
-import SelectorContainer from '../Selector/SelectorContainer';
-import WorkflowContainer from '../Workflow/WorkflowContainer';
+import App from './App'; // eslint-disable-line import/no-unresolved
+import Selector from '../Selector/SelectorContainer'; // eslint-disable-line no-unused-vars
+import Workflow from '../Workflow/WorkflowContainer'; // eslint-disable-line no-unused-vars
 
-jest.mock('../Selector/SelectorContainer', () => (...prop) => <span>SelectorContainer</span>);
-jest.mock('../Workflow/WorkflowContainer', () => (...prop) => <span>WorkflowContainer</span>);
+jest.mock('../Selector/SelectorContainer',
+  () => (...prop) => <span>SelectorContainer</span>);// eslint-disable-line no-unused-vars
+jest.mock('../Workflow/WorkflowContainer',
+  () => (...prop) => <span>WorkflowContainer</span>);// eslint-disable-line no-unused-vars
 
 describe('APP', () => {
   let container = null;

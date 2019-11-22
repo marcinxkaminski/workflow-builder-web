@@ -1,10 +1,10 @@
 import React from 'react';
-import WorkflowContainer from '../Workflow/WorkflowContainer';
-import SelectorContainer from '../Selector/SelectorContainer';
+import Workflow from '../Workflow/WorkflowContainer';
+import Selector from '../Selector/SelectorContainer';
 
 export default () => (
   <div>
-    <SelectorContainer />
-    <WorkflowContainer />
+    <Selector />
+    <Workflow />
   </div>
 );

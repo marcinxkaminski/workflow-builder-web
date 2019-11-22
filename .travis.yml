@@ -13,7 +13,7 @@ script:
 deploy:
   provider: netlify
   site: workflowbuilder.netlify.com
-  auth: $deploy_token
+  auth: $NETLIFY_TOKEN
   edge: true # opt in to dpl v2
   skip_cleanup: true
   local_dir: build
