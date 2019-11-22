@@ -1,6 +1,6 @@
+import { BASE_API_URL } from './api-endpoints';
 import request from '../utils/request';
 import { buildUrl } from '../utils/urlHelper';
-import { BASE_API_URL } from './ApiEndpoints';
 
 export const OPTIONS = {};
 export const HEADERS = {};

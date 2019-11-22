@@ -1,8 +1,8 @@
 {
   "homepage": "https://xkamson.github.io/workflow-builder-web/",
   "name": "workflow-builder-web",
-  "version": "0.1.1",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
   "dependencies": {
     "bootstrap": "^4.3.1",
     "react": "^16.12.0",
@@ -15,12 +15,16 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "clean": "rm -rf node_modules",
+    "reinstall": "npm run clean && npm install",
+    "rebuild": "npm run clean && npm install && npm run build",
     "test": "CI=true react-scripts test",
     "test:coverage": "npm test -- --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint './src/{app,tests}/**/*.{js,jsx}'",
     "lint:fix": "eslint --fix './src/{app,tests}/**/*.{js,jsx}'",
     "predeploy": "npm run build",
+    "deploy": "netlify deploy -p",
     "snyk": "snyk test",
     "snyk:fix": "snyk protect"
   },
@@ -42,6 +46,7 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.16.0",
+    "netlify": "^2.4.8",
     "node-sass": "^4.13.0",
     "redux-devtools": "^3.5.0",
     "redux-mock-store": "^1.5.3",

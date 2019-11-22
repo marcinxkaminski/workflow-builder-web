@@ -1,14 +1,13 @@
 /* global expect, describe, jest */
 
-import * as apiRequests from './apiRequests';
+import { BASE_API_URL } from './api-endpoints';
+import * as apiRequests from './api-requests';
 import request from '../utils/request';
 import { buildUrl } from '../utils/urlHelper';
-// eslint-disable-next-line no-unused-vars
-import { BASE_API_URL } from './ApiEndpoints';
 
 jest.mock('../utils/request');
 jest.mock('../utils/urlHelper', () => ({ buildUrl: jest.fn().mockImplementation(() => '') }));
-jest.mock('./ApiEndpoints', () => ({ BASE_API_URL: 'http://test.com' }));
+jest.mock('./api-endpoints', () => ({ BASE_API_URL: 'http://test.com' }));
 
 describe('API REQUESTS', () => {
   beforeEach(() => {
@@ -27,7 +26,7 @@ describe('API REQUESTS', () => {
   it('invokes properly request method for GET with default params', async () => {
     const httpMethod = 'GET';
     const mockEndpointUrl = '/test';
-    const mockBaseUrl = 'http://test.com';
+    const mockBaseUrl = BASE_API_URL;
 
     await apiRequests.get(mockEndpointUrl);
     expect(buildUrl).toHaveBeenCalledWith(mockBaseUrl, mockEndpointUrl, null);
@@ -37,7 +36,7 @@ describe('API REQUESTS', () => {
   it('invokes properly request method for GET without default params', async () => {
     const httpMethod = 'GET';
     const mockEndpointUrl = '/test';
-    const mockBaseUrl = 'http://test.com';
+    const mockBaseUrl = BASE_API_URL;
     const mockQueryParams = { a: 'a' };
     const mockedOptions = { b: 'b' };
     const mockedHeaders = { c: 'c' };
@@ -50,7 +49,7 @@ describe('API REQUESTS', () => {
   it('invokes properly request method for PUT with default params', async () => {
     const httpMethod = 'PUT';
     const mockEndpointUrl = '/test';
-    const mockBaseUrl = 'http://test.com';
+    const mockBaseUrl = BASE_API_URL;
 
     await apiRequests.put(mockEndpointUrl);
     expect(buildUrl).toHaveBeenCalledWith(mockBaseUrl, mockEndpointUrl, null);
@@ -60,7 +59,7 @@ describe('API REQUESTS', () => {
   it('invokes properly request method for PUT without default params', async () => {
     const httpMethod = 'PUT';
     const mockEndpointUrl = '/test';
-    const mockBaseUrl = 'http://test.com';
+    const mockBaseUrl = BASE_API_URL;
     const mockQueryParams = { a: 'a' };
     const mockedOptions = { b: 'b' };
     const mockedHeaders = { c: 'c' };
@@ -74,7 +73,7 @@ describe('API REQUESTS', () => {
   it('invokes properly request method for POST with default params', async () => {
     const httpMethod = 'POST';
     const mockEndpointUrl = '/test';
-    const mockBaseUrl = 'http://test.com';
+    const mockBaseUrl = BASE_API_URL;
 
     await apiRequests.post(mockEndpointUrl);
     expect(buildUrl).toHaveBeenCalledWith(mockBaseUrl, mockEndpointUrl, null);
@@ -84,7 +83,7 @@ describe('API REQUESTS', () => {
   it('invokes properly request method for POST without default params', async () => {
     const httpMethod = 'POST';
     const mockEndpointUrl = '/test';
-    const mockBaseUrl = 'http://test.com';
+    const mockBaseUrl = BASE_API_URL;
     const mockQueryParams = { a: 'a' };
     const mockedOptions = { b: 'b' };
     const mockedHeaders = { c: 'c' };
