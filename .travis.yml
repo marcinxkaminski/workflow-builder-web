@@ -6,7 +6,6 @@ cache:
     - node_modules
 install:
   - npm install
-  - snyk protect
   - snyk test
 script:
   - npm test
