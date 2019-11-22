@@ -1,6 +1,6 @@
 import * as ActionTypes from '../data/ActionTypes';
 import { post, put } from '../api/apiRequests';
-import * as ApiEnpoints from '../api/ApiEndpoints';
+import * as ApiEnpoints from '../api/apiEndpoints';
 import requestDispatch from '../utils/requestDispatch';
 import { openUrlInNewTab } from '../utils/windowHelper';
 import { buildUrl } from '../utils/urlHelper';

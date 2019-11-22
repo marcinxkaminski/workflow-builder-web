@@ -1,6 +1,6 @@
 /* global expect, describe */
 
-import * as ApiEndpoints from './ApiEndpoints';
+import * as ApiEndpoints from './apiEndpoints';
 
 describe('API ENDPOINTS', () => {
   it('has base api url', async () => {

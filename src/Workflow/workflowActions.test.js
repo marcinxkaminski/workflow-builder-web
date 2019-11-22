@@ -2,7 +2,7 @@
 import * as actions from './workflowActions';
 import * as ActionTypes from '../data/ActionTypes';
 import { post, put } from '../api/apiRequests';
-import * as ApiEnpoints from '../api/ApiEndpoints';
+import * as ApiEnpoints from '../api/apiEndpoints';
 import requestDispatch from '../utils/requestDispatch';
 import { openUrlInNewTab } from '../utils/windowHelper';
 import { buildUrl } from '../utils/urlHelper';
@@ -18,7 +18,7 @@ jest.mock('../data/ActionTypes', () => ({
   GET_AVAILABLE_WORKFLOW_ELEMENTS: 'GET_AVAILABLE_WORKFLOW_ELEMENTS', ADD_WORKFLOW_ELEMENT: 'ADD_WORKFLOW_ELEMENT',
 }));
 
-jest.mock('../api/ApiEndpoints', () => ({
+jest.mock('../api/apiEndpoints', () => ({
   WORKFLOW_ELEMENTS: 'WORKFLOW_ELEMENTS', BASE_API_URL: 'BASE_API_URL', WORKFLOW_FILES: 'WORKFLOW_FILES',
 }));
 

@@ -1,9 +1,9 @@
 /* global expect, describe, jest */
 import { get } from '../api/apiRequests';
-import * as ApiEndpoints from '../api/ApiEndpoints';
+import * as ApiEndpoints from '../api/apiEndpoints';
 import { getAvailableWorkflowElementsFromApi } from './selectorHelper';
 
-jest.mock('../api/ApiEndpoints', () => ({
+jest.mock('../api/apiEndpoints', () => ({
   WORKFLOW_ELEMENTS: 'mocked-url',
 }));
 jest.mock('../api/apiRequests', () => ({

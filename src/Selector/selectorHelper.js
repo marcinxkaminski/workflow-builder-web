@@ -1,5 +1,5 @@
 import { get } from '../api/apiRequests';
-import * as ApiEnpoints from '../api/ApiEndpoints';
+import * as ApiEnpoints from '../api/apiEndpoints';
 import WorkflowElement from '../models/WorkflowElement';
 
 export const getAvailableWorkflowElementsFromApi = async () => {
