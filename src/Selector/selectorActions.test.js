@@ -1,4 +1,4 @@
-/* global expect, describe, jest */
+
 import * as actions from './selectorActions';
 import * as ActionTypes from '../data/ActionTypes';
 import requestDispatch from '../utils/requestDispatch';

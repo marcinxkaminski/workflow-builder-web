@@ -1,13 +1,11 @@
-/* global expect, describe, jest */
-
-import { BASE_API_URL } from './api-endpoints';
-import * as apiRequests from './api-requests';
+import { BASE_API_URL } from './apiEndpoints';
+import * as apiRequests from './apiRequests';
 import request from '../utils/request';
 import { buildUrl } from '../utils/urlHelper';
 
 jest.mock('../utils/request');
 jest.mock('../utils/urlHelper', () => ({ buildUrl: jest.fn().mockImplementation(() => '') }));
-jest.mock('./api-endpoints', () => ({ BASE_API_URL: 'http://test.com' }));
+jest.mock('./apiEndpoints', () => ({ BASE_API_URL: 'http://test.com' }));
 
 describe('API REQUESTS', () => {
   beforeEach(() => {
@@ -89,7 +87,9 @@ describe('API REQUESTS', () => {
     const mockedHeaders = { c: 'c' };
     const mockBody = { d: 'd' };
 
-    await apiRequests.post(mockEndpointUrl, mockBody, mockQueryParams, mockedOptions, mockedHeaders);
+    await apiRequests.post(
+      mockEndpointUrl, mockBody, mockQueryParams, mockedOptions, mockedHeaders,
+    );
     expect(buildUrl).toHaveBeenCalledWith(mockBaseUrl, mockEndpointUrl, mockQueryParams);
     expect(request).toHaveBeenCalledWith('', mockedOptions, mockedHeaders, httpMethod, mockBody);
   });

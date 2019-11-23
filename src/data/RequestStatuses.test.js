@@ -1,4 +1,3 @@
-/* global expect, describe */
 import * as RequestStatuses from './RequestStatuses';
 
 describe('REQUEST STATUSES', () => {

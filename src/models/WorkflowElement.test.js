@@ -1,4 +1,3 @@
-/* global expect, describe */
 import WorkflowElement, * as we from './WorkflowElement';
 
 describe('WORKFLOW ELEMENT', () => {
@@ -34,7 +33,11 @@ describe('WORKFLOW ELEMENT', () => {
     const mockConfig = { someProp: 'mocked-config' };
 
     const element = new WorkflowElement({
-      id: mockId, name: mockName, description: mockDescription, materialIcon: mockMaterialIcon, config: mockConfig,
+      id: mockId,
+      name: mockName,
+      description: mockDescription,
+      materialIcon: mockMaterialIcon,
+      config: mockConfig,
     });
 
     expect(element.id).toEqual(mockId);

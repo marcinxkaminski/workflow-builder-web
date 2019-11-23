@@ -1,4 +1,3 @@
-/* global expect, describe, jest */
 
 import requestDispatch from './requestDispatch';
 import * as ActionTypes from '../data/ActionTypes';

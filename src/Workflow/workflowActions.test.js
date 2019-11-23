@@ -1,15 +1,15 @@
-/* global expect, describe, jest */
+
 import * as actions from './workflowActions';
 import * as ActionTypes from '../data/ActionTypes';
-import { post, put } from '../api/api-requests';
-import * as ApiEnpoints from '../api/api-endpoints';
+import { post, put } from '../api/apiRequests';
+import * as ApiEnpoints from '../api/apiEndpoints';
 import requestDispatch from '../utils/requestDispatch';
 import { openUrlInNewTab } from '../utils/windowHelper';
 import { buildUrl } from '../utils/urlHelper';
 
 jest.mock('../utils/requestDispatch', () => jest.fn());
 jest.mock('../utils/windowHelper', () => ({ openUrlInNewTab: jest.fn() }));
-jest.mock('../api/api-requests', () => ({
+jest.mock('../api/apiRequests', () => ({
   post: jest.fn(async () => ({ id: 'mock-workflow-id' })),
   put: jest.fn(async () => 'mock-result'),
 }));
@@ -18,7 +18,7 @@ jest.mock('../data/ActionTypes', () => ({
   GET_AVAILABLE_WORKFLOW_ELEMENTS: 'GET_AVAILABLE_WORKFLOW_ELEMENTS', ADD_WORKFLOW_ELEMENT: 'ADD_WORKFLOW_ELEMENT',
 }));
 
-jest.mock('../api/api-endpoints', () => ({
+jest.mock('../api/apiEndpoints', () => ({
   WORKFLOW_ELEMENTS: 'WORKFLOW_ELEMENTS', BASE_API_URL: 'BASE_API_URL', WORKFLOW_FILES: 'WORKFLOW_FILES',
 }));
 
@@ -33,7 +33,7 @@ describe('WORKFLOW ACTIONS', () => {
 
   it('transforms selected elements for submit', async () => {
     const mockItems = [{ id: 'id1', name: 'name1' }, { id: 'id1', name: 'name1' }, { id: 'id1', name: 'name1' }];
-    const mockItemsIds = mockItems.map(i => ({ id: i.id }));
+    const mockItemsIds = mockItems.map((i) => ({ id: i.id }));
 
     expect(actions.transformSelectedWorkflowElementsForSubmit(mockItems)).toEqual(mockItemsIds);
     expect(actions.transformSelectedWorkflowElementsForSubmit()).toEqual([]);
@@ -77,8 +77,14 @@ describe('WORKFLOW ACTIONS', () => {
     const mockItem = { id: 0, name: 'mock-name', config: { data: { some: 'mocked' } } };
     actions.validateDataToGetResult = jest.fn(() => true);
 
-    const res = await actions.processOnlineInApi({ data: JSON.stringify(mockData), item: mockItem });
-    expect(put).toHaveBeenCalledWith(ApiEnpoints.WORKFLOW_ELEMENTS, { id: mockItem.id, data: mockData });
+    const res = await actions.processOnlineInApi({
+      data: JSON.stringify(mockData),
+      item: mockItem,
+    });
+    expect(put).toHaveBeenCalledWith(ApiEnpoints.WORKFLOW_ELEMENTS, {
+      id: mockItem.id,
+      data: mockData,
+    });
     expect(res).toEqual({ index: mockItem.index, result: 'mock-result', isValid: true });
   });
 
@@ -87,7 +93,10 @@ describe('WORKFLOW ACTIONS', () => {
     const mockItem = { id: 0, name: 'mock-name', config: { data: { some: 'mocked', additional: 'invalid' } } };
     actions.validateDataToGetResult = jest.fn(() => false);
 
-    const res = await actions.processOnlineInApi({ data: JSON.stringify(mockData), item: mockItem });
+    const res = await actions.processOnlineInApi({
+      data: JSON.stringify(mockData),
+      item: mockItem,
+    });
     expect(put).not.toBeCalled();
     expect(res).toEqual({ index: mockItem.index, result: null, isValid: false });
   });
@@ -115,7 +124,7 @@ describe('WORKFLOW ACTIONS', () => {
 
   it('submits workflow when worklfow id is not set', async () => {
     const mockItems = [{ id: 'mock-id', name: 'mock-name', config: { data: { some: 'mock' } } }];
-    const transformedItems = mockItems.map(i => ({ id: i.id }));
+    const transformedItems = mockItems.map((i) => ({ id: i.id }));
     const mockWorkflowId = 'mocked-workflow-id';
     const mockDispatch = jest.fn(async () => mockWorkflowId);
     const mockGetState = jest.fn(() => ({
@@ -129,7 +138,9 @@ describe('WORKFLOW ACTIONS', () => {
       actions.submitWorkflowInApi,
       { elements: transformedItems },
     );
-    expect(buildUrl).toHaveBeenCalledWith(ApiEnpoints.BASE_API_URL, ApiEnpoints.WORKFLOW_FILES, { id: mockWorkflowId });
+    expect(buildUrl).toHaveBeenCalledWith(
+      ApiEnpoints.BASE_API_URL, ApiEnpoints.WORKFLOW_FILES, { id: mockWorkflowId },
+    );
     expect(openUrlInNewTab).toHaveBeenCalledWith(mockWorkflowId);
   });
 

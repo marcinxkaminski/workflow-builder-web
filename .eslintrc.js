@@ -3,7 +3,10 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: 'airbnb',
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+  ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -12,19 +15,29 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 2019,
     sourceType: 'module',
   },
   plugins: [
     'react',
   ],
   rules: {
-    "react/prefer-stateless-function": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "no-console": ["error", { allow: ["warn", "error"] }]
   },
   overrides: [
     {
       files: ["*.test.js", "*.test.jsx"],
+      rules: {
+        "no-redeclare": "off",
+        "no-unused-vars": "off",
+        "no-global-assign": "off",
+        "import/prefer-default-export": "off",
+        "react/jsx-props-no-spreading": "off",
+        "jsx-a11y/interactive-supports-focus": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "no-console": ["error", { allow: ["warn", "error"] }],
+      },
       globals: {
         describe: true,
         context: true,
@@ -32,7 +45,9 @@ module.exports = {
         afterEach: true,
         it: true,
         before: true,
-        after: true
+        after: true,
+        jest: true,
+        expect: true,
       }
     }
   ]

@@ -1,4 +1,4 @@
-/* global expect, describe, jest */
+
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as ActionTypes from '../data/ActionTypes';
@@ -32,9 +32,18 @@ describe('SELECTOR REDUCER', () => {
   it('dispatches GET_AVAILABLE_WORKFLOW_ELEMENTS and changes request status', async () => {
     const mockStatus = 'mock-status';
 
-    const actionToDispatch = { type: ActionTypes.GET_AVAILABLE_WORKFLOW_ELEMENTS, payload: { status: mockStatus } };
+    const actionToDispatch = {
+      type: ActionTypes.GET_AVAILABLE_WORKFLOW_ELEMENTS,
+      payload: { status: mockStatus },
+    };
     const expectedActions = [actionToDispatch];
-    const expectedState = { ...initialState, request: { status: mockStatus, error: null } };
+    const expectedState = {
+      ...initialState,
+      request: {
+        status: mockStatus,
+        error: null,
+      },
+    };
 
     await store.dispatch(actionToDispatch);
 
@@ -48,7 +57,10 @@ describe('SELECTOR REDUCER', () => {
 
     const actionToDispatch = {
       type: ActionTypes.GET_AVAILABLE_WORKFLOW_ELEMENTS_SUCCESS,
-      payload: { status: mockStatus, data: mockData },
+      payload: {
+        status: mockStatus,
+        data: mockData,
+      },
     };
     const expectedActions = [actionToDispatch];
     const expectedState = {

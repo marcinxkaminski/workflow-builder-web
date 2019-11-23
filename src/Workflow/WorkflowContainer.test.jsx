@@ -1,4 +1,3 @@
-/* global expect, describe, jest */
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import React from 'react';
@@ -24,9 +23,14 @@ describe('WORKFLOW CONTAINER', () => {
     act(() => {
       render(
         <WorkflowContainer {...{
-          selectedWorkflowElements: [], deleteWorkflowElement, submitWorkflow, onlineProcessing, request: { status: SUCCESS }
+          selectedWorkflowElements: [],
+          deleteWorkflowElement,
+          submitWorkflow,
+          onlineProcessing,
+          request: { status: SUCCESS },
         }}
-        />, container,
+        />,
+        container,
       );
     });
     return container.querySelector('div');

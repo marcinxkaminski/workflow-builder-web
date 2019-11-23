@@ -5,8 +5,13 @@ import React from 'react';
 import WorkflowElementsList, { tranfsormItemToDisplay } from './WorkflowElementsList';
 import Card from '../Common/Card';
 
+
 jest.mock('../Common/Card', () => jest.fn((props) => (
-  <div className="CARD-ELEMENT" onClick={props.onDelete}>
+  <div
+    role="button"
+    className="CARD-ELEMENT"
+    onClick={props.onDelete}
+  >
     {JSON.stringify(props.item)}
   </div>
 )));
@@ -17,7 +22,8 @@ describe('WORKFLOW ELEMENTS LIST', () => {
   const renderComponent = (props) => {
     act(() => {
       render(
-        <WorkflowElementsList {...props} />, container
+        <WorkflowElementsList {...props} />,
+        container,
       );
     });
     return container.querySelector('div');
@@ -57,18 +63,21 @@ describe('WORKFLOW ELEMENTS LIST', () => {
     };
     const mockIndex = 0;
     const mockItems = [mockItem];
-    const mockChangeData = '{}';
 
     const mockOnDelete = jest.fn();
     const mockOnConfigChange = jest.fn();
 
-    const container = renderComponent({ items: mockItems, onDelete: mockOnDelete, onConfigChange: mockOnConfigChange });
+    const elementsList = renderComponent({
+      items: mockItems,
+      onDelete: mockOnDelete,
+      onConfigChange: mockOnConfigChange,
+    });
 
     const itemToDisplay = tranfsormItemToDisplay(mockItem, mockIndex);
-    const card = container.querySelector('.CARD-ELEMENT');
+    const card = elementsList.querySelector('.CARD-ELEMENT');
     expect(card.innerHTML).toEqual(JSON.stringify(itemToDisplay));
 
     card.click();
     expect(mockOnDelete).toHaveBeenCalledWith(itemToDisplay);
-  })
+  });
 });

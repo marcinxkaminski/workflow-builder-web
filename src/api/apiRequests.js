@@ -1,4 +1,4 @@
-import { BASE_API_URL } from './api-endpoints';
+import { BASE_API_URL } from './apiEndpoints';
 import request from '../utils/request';
 import { buildUrl } from '../utils/urlHelper';
 

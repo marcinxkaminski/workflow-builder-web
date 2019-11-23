@@ -1,4 +1,3 @@
-/* global expect, describe, jest */
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as ActionTypes from '../data/ActionTypes';
@@ -82,7 +81,9 @@ describe('WORKFLOW REDUCER', () => {
     const expectedState = {
       ...initialState,
       request: { status: mockStatus, error: mockError },
-      selectedWorkflowElements: [{ ...mockItem, config: { isValid: mockIsValid, result: mockResult } }],
+      selectedWorkflowElements: [
+        { ...mockItem, config: { isValid: mockIsValid, result: mockResult } },
+      ],
     };
 
     await store.dispatch(actionToDispatch);

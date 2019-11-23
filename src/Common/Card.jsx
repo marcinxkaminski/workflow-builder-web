@@ -1,6 +1,12 @@
+/* eslint-disable consistent-return */
+
 import React, { memo } from 'react';
+import {
+  shape, func, string, bool,
+} from 'prop-types';
 import Button from './Button';
 import * as MaterialIcons from '../data/MaterialIcons';
+import WorkflowElement from '../models/WorkflowElement';
 
 const renderIndex = (index) => (
   <div className="row justify-content-center">
@@ -43,7 +49,12 @@ const renderDescription = (description) => (
 const renderAddButton = (onAdd) => (
   <div className="row justify-content-center">
     <div className="col text-center">
-      <Button icon={MaterialIcons.ADD} customClasses="btn-outline-dark mx-auto" shadow={false} onClick={onAdd} />
+      <Button
+        icon={MaterialIcons.ADD}
+        customClasses="btn-outline-dark mx-auto"
+        shadow={false}
+        onClick={onAdd}
+      />
     </div>
   </div>
 );
@@ -51,26 +62,40 @@ const renderAddButton = (onAdd) => (
 const renderDeleteButton = (onDelete) => (
   <div className="row justify-content-center">
     <div className="col text-center">
-      <Button icon={MaterialIcons.DELETE} customClasses="btn-outline-dark mx-auto" shadow={false} onClick={onDelete} />
+      <Button
+        icon={MaterialIcons.DELETE}
+        customClasses="btn-outline-dark mx-auto"
+        shadow={false}
+        onClick={onDelete}
+      />
     </div>
   </div>
 );
 
 const renderConfig = (config, onChange) => (
   <div className="card-footer overflow-auto p-0 small font-weight-light">
-    <textarea className={`smallest form-control${config.isValid === false ? ' is-invalid' : ''}`} defaultValue={JSON.stringify(config.data)} onBlur={({ target }) => onChange(target.value)} />
+    <textarea
+      className={`smallest form-control${config.isValid === false ? ' is-invalid' : ''}`}
+      defaultValue={JSON.stringify(config.data)}
+      onBlur={({ target }) => onChange(target.value)}
+    />
     <small className="text-muted small">
-      Result:<br /> {config.result ? JSON.stringify(config.result) : null}
+      Result:
+      <br />
+      {' '}
+      {config.result ? JSON.stringify(config.result) : null}
     </small>
   </div>
 );
 
 const Card = (props) => {
-  const { item = {}, customClasses = '', hideButtons, onAdd, onDelete, onChange } = props;
+  const {
+    item = {}, customClasses = '', hideButtons, onAdd, onDelete, onChange,
+  } = props;
 
-  if (!Object.keys(item).length) {
+  if (!item || !Object.keys(item).length) {
     console.warn('Cannot render empty item ', item);
-    return;
+    return null;
   }
 
   return (
@@ -86,9 +111,28 @@ const Card = (props) => {
         {onDelete && !hideButtons && !onAdd ? renderDeleteButton(onDelete) : null}
 
       </div>
-      {Object.keys(item.config || {}).length && onChange ? renderConfig(item.config, onChange) : null}
+      {Object.keys(item.config || {}).length && onChange
+        ? renderConfig(item.config, onChange) : null}
     </div>
   );
+};
+
+Card.defaultProps = {
+  item: {},
+  onAdd: null,
+  onDelete: null,
+  onChange: null,
+  hideButtons: false,
+  customClasses: '',
+};
+
+Card.propTypes = {
+  item: shape(WorkflowElement.prototype),
+  customClasses: string,
+  hideButtons: bool,
+  onAdd: func,
+  onDelete: func,
+  onChange: func,
 };
 
 export default memo(Card);

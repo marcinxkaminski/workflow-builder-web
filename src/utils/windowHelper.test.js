@@ -1,4 +1,3 @@
-/* global expect, describe, jest, window */
 import { openUrlInNewTab, getWindowWidth, cannotOpenUrlInNewTabWarning } from './windowHelper';
 
 describe('WINDOW HELPER', () => {

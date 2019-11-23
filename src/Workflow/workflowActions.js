@@ -1,6 +1,6 @@
 import * as ActionTypes from '../data/ActionTypes';
-import { post, put } from '../api/api-requests';
-import * as ApiEnpoints from '../api/api-endpoints';
+import { post, put } from '../api/apiRequests';
+import * as ApiEnpoints from '../api/apiEndpoints';
 import requestDispatch from '../utils/requestDispatch';
 import { openUrlInNewTab } from '../utils/windowHelper';
 import { buildUrl } from '../utils/urlHelper';
@@ -12,8 +12,10 @@ export function transformSelectedWorkflowElementsForSubmit(elements = []) {
 export function validateDataToGetResult(data, config) {
   try {
     const dataObj = JSON.parse(data);
-    const emptyValuesCount = Object.values(dataObj).filter(i => !i).length;
-    const notSameKeysCount = Object.keys(config.data).filter(k => !Object.keys(dataObj).includes(k)).length;
+    const emptyValuesCount = Object.values(dataObj).filter((i) => !i).length;
+    const notSameKeysCount = Object.keys(config.data).filter(
+      (k) => !Object.keys(dataObj).includes(k),
+    ).length;
     return !notSameKeysCount && !emptyValuesCount;
   } catch (err) {
     console.warn(err);
@@ -53,7 +55,9 @@ export function submitWorkflow() {
 
     if (!id) {
       const elements = transformSelectedWorkflowElementsForSubmit(selectedWorkflowElements);
-      id = await dispatch(requestDispatch(ActionTypes.SUBMIT_WORKFLOW, submitWorkflowInApi, { elements }));
+      id = await dispatch(requestDispatch(
+        ActionTypes.SUBMIT_WORKFLOW, submitWorkflowInApi, { elements },
+      ));
     }
 
     openUrlInNewTab(buildUrl(ApiEnpoints.BASE_API_URL, ApiEnpoints.WORKFLOW_FILES, { id }));

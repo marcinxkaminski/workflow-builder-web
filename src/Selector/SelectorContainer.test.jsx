@@ -1,8 +1,8 @@
-/* global expect, describe, jest */
+
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getAvailableWorkflowElements, addWorkflowElement } from './selectorActions';
 import SelectorCarousel from './SelectorCarousel';
@@ -10,7 +10,7 @@ import { getWindowWidth } from '../utils/windowHelper';
 import { SelectorContainer, getVisibleItemsCount } from './SelectorContainer';
 
 jest.mock('../utils/windowHelper', () => ({ getWindowWidth: jest.fn() }));
-jest.mock('./SelectorCarousel', () => jest.fn(props => (<div className="Selector-Carousel" />)));
+jest.mock('./SelectorCarousel', () => jest.fn((props) => (<div className="Selector-Carousel" />)));
 jest.mock('./selectorActions', () => ({
   getAvailableWorkflowElements: jest.fn(),
   addWorkflowElement: jest.fn(),
@@ -22,7 +22,12 @@ describe('SELECTOR CONTAINER', () => {
   const renderContainer = () => {
     act(() => {
       render(
-        <SelectorContainer {...{ availableWorkflowElements: [], addWorkflowElement, getAvailableWorkflowElements }} />, container
+        <SelectorContainer {...{
+          availableWorkflowElements: [],
+          addWorkflowElement,
+          getAvailableWorkflowElements,
+        }}
+        />, container,
       );
     });
     return container.querySelector('div');

@@ -1,4 +1,4 @@
-/* global expect, describe, jest */
+
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import React from 'react';
@@ -89,6 +89,5 @@ describe('BUTTON', () => {
     button.click();
 
     expect(onClickMocked).toHaveBeenCalledTimes(1);
-
   });
 });

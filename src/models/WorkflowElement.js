@@ -1,4 +1,7 @@
-export class WorkflowElementError extends Error { }
+export function WorkflowElementError(message) {
+  this.name = 'WorkflowElementError';
+  this.message = message || '';
+}
 
 export const ID_ERROR_MESSAGE = 'Invalid workflow element\'s ID';
 export const NAME_ERROR_MESSAGE = 'Invalid workflow element\'s name';

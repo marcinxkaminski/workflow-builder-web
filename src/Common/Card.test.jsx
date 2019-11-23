@@ -1,4 +1,3 @@
-/* global expect, describe, jest */
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import React from 'react';
@@ -139,7 +138,10 @@ describe('CARD', () => {
   it('renders default card with custom classes', async () => {
     const mockedCustomClass = 'myextraordinarymockedcustomclass';
 
-    const card = renderCard({ item: mockItem, customClasses: mockedCustomClass }).getElementsByClassName(mockedCustomClass)[0];
+    const card = renderCard({
+      item: mockItem,
+      customClasses: mockedCustomClass,
+    }).getElementsByClassName(mockedCustomClass)[0];
     expect(!!card).toBe(true);
   });
 

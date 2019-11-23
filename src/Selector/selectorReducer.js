@@ -11,20 +11,17 @@ export const initialState = {
 export default function selectorReducer(state = initialState, { type, payload }) {
   switch (type) {
     case ActionTypes.GET_AVAILABLE_WORKFLOW_ELEMENTS:
-      return Object.assign({}, state, {
-        request: { status: payload.status, error: null },
-      });
+      return { ...state, request: { status: payload.status, error: null } };
 
     case ActionTypes.GET_AVAILABLE_WORKFLOW_ELEMENTS_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         request: { status: payload.status, error: null },
         availableWorkflowElements: payload.data,
-      });
+      };
 
     case ActionTypes.GET_AVAILABLE_WORKFLOW_ELEMENTS_ERROR:
-      return Object.assign({}, state, {
-        request: { status: payload.status, error: payload.error },
-      });
+      return { ...state, request: { status: payload.status, error: payload.error } };
 
     default:
       return state;

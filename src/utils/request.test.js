@@ -1,4 +1,3 @@
-/* global expect, describe, jest, fetch */
 import request from './request';
 
 describe('REQUEST', () => {
