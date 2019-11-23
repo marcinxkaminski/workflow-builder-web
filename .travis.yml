@@ -5,17 +5,17 @@ cache:
   directories:
     - node_modules
 install:
+  - npm install -g snyk
+  - npm install -g codecov
   - npm install
-  - snyk test
 script:
-  - npm test
-  - npm run test:coverage
+  - snyk test
+  - npm run test:coverage && codecov
   - npm run lint
   - npm run build
 after_success:
   - snyk monitor
-after_deploy:
-  - snyk monitor
+  - codecov
 deploy:
   provider: netlify
   site: workflowbuilder.netlify.com
