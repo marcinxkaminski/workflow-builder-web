@@ -20,7 +20,7 @@
     "reinstall": "npm run clean && npm install",
     "rebuild": "npm run clean && npm install && npm run build",
     "test": "CI=true react-scripts test",
-    "test:coverage": "npm test -- --coverage",
+    "test:coverage": "npm test -- --coverage && codecov && codeclimate-test-reporter < ./coverage/lcov.info",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/eslint './src/**/*.{js,jsx}'",
     "lint:fix": "./node_modules/.bin/eslint --fix './src/**/*.{js,jsx}'",

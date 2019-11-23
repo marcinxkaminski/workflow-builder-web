@@ -5,12 +5,12 @@ cache:
   directories:
     - node_modules
 install:
-  - npm install -g snyk
-  - npm install -g codecov
-  - npm install
+  - npm i -g snyk codecov codeclimate-test-reporter
+  - npm i
 script:
   - snyk test
   - npm run test:coverage && codecov
+  - codeclimate-test-reporter < ./coverage/lcov.info
   - npm run lint
   - npm run build
 after_success:
