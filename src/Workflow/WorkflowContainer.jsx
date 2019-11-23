@@ -55,7 +55,7 @@ WorkflowContainer.propTypes = {
   submitWorkflow: func.isRequired,
   onlineProcessing: func.isRequired,
   request: shape({
-    status: string.isRequired,
+    status: string,
     error: object,
   }).isRequired,
 };

@@ -18,7 +18,9 @@ export const SelectorContainer = (props) => {
     getAvailableWorkflowElements: dispatchGet,
   } = props;
 
-  useEffect(dispatchGet, []);
+  useEffect(() => {
+    dispatchGet();
+  }, []);
 
   return (
     <div id="selector" className="container-fluid w-100 shadow p-4 mb-2">

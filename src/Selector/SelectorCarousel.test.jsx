@@ -8,10 +8,10 @@ import Button from '../Common/Button';
 import * as MaterialIcons from '../data/MaterialIcons';
 
 jest.mock('../Common/Card', () => ({ item, onAdd }) => (
-  <button type="button" onClick={onAdd}>{item.name}</button>
+  <button type="button" className="Mock-Card" onClick={onAdd}>{item.name}</button>
 ));
 jest.mock('../Common/Button', () => ({ onClick, icon }) => (
-  <button type="button" onClick={onClick}>{icon}</button>
+  <button type="button" className="Mock-Button" onClick={onClick}>{icon}</button>
 ));
 jest.mock('../data/MaterialIcons', () => ({
   ARROW_LEFT: 'left',
@@ -22,12 +22,15 @@ describe('SELECTOR CAROUSEL', () => {
   let container = null;
 
   const renderCarousel = ({
-    items, infinite, onAdd = jest.fn(), itemsVisibleCount,
+    items, infinite, onAdd = jest.fn(() => ''), itemsVisibleCount,
   }) => {
     act(() => {
       render(
         <SelectorCarousel {...{
-          items, infinite, onAdd, itemsVisibleCount,
+          items,
+          infinite,
+          onAdd,
+          itemsVisibleCount,
         }}
         />,
         container,
@@ -59,15 +62,33 @@ describe('SELECTOR CAROUSEL', () => {
   });
 
   it('not renders when no onAdd function passed', async () => {
-    const carousel = renderCarousel({ items: [{ some: 'mock' }], onAdd: null });
+    const carousel = renderCarousel({
+      items: [{
+        id: 'id1',
+        name: 'name1',
+        materialIcon: 'icon1',
+        description: 'description1',
+      }],
+      onAdd: null,
+    });
     expect(!!carousel).toBe(false);
   });
 
-  it('renders two cards and handles onAdd', async () => {
-    const mockOnAdd = jest.fn();
+  it('renders 2 cards and handles onAdd', async () => {
+    const mockOnAdd = jest.fn(() => '');
     const mockItems = [
-      { id: 'id1', some: 'mock1' },
-      { id: 'id2', some: 'mock2' },
+      {
+        id: 'id1',
+        name: 'name1',
+        materialIcon: 'icon1',
+        description: 'description1',
+      },
+      {
+        id: 'id2',
+        name: 'name2',
+        materialIcon: 'icon2',
+        description: 'description2',
+      },
     ];
     const mockItemsVisibleCount = mockItems.length;
 
@@ -75,7 +96,7 @@ describe('SELECTOR CAROUSEL', () => {
       items: mockItems,
       onAdd: mockOnAdd,
       itemsVisibleCount: mockItemsVisibleCount,
-    }).querySelectorAll('span');
+    }).querySelectorAll('.Mock-Card');
 
     expect(cards.length).toEqual(mockItemsVisibleCount);
 
@@ -88,56 +109,106 @@ describe('SELECTOR CAROUSEL', () => {
 
   it('renders with default props and buttons that handle changing cards', async () => {
     const mockItems = [
-      { id: 'id1', name: 'mock1' },
-      { id: 'id2', name: 'mock2' },
-      { id: 'id3', name: 'mock3' },
-      { id: 'id4', name: 'mock4' },
+      {
+        id: 'id1',
+        name: 'name1',
+        materialIcon: 'icon1',
+        description: 'description1',
+        config: {},
+      },
+      {
+        id: 'id2',
+        name: 'name2',
+        materialIcon: 'icon2',
+        description: 'description2',
+        config: {},
+      },
+      {
+        id: 'id3',
+        name: 'name3',
+        materialIcon: 'icon3',
+        description: 'description3',
+        config: {},
+      },
+      {
+        id: 'id4',
+        name: 'name4',
+        materialIcon: 'icon4',
+        description: 'description4',
+        config: {},
+      },
     ];
-    const mockOnAdd = jest.fn();
+    const mockOnAdd = jest.fn(() => '');
 
     const carousel = renderCarousel({ items: mockItems, onAdd: mockOnAdd });
 
-    let cards = carousel.querySelectorAll('span');
+    let cards = carousel.querySelectorAll('.Mock-Card');
     expect(cards.length).toEqual(sc.DEFAULT_VISIBLE_ITEMS_COUNT);
     expect(cards[0].innerHTML).toEqual(mockItems[0].name);
 
-    const buttons = carousel.querySelectorAll('button');
+    const buttons = carousel.querySelectorAll('.Mock-Button');
     expect(buttons.length).toEqual(2);
     expect(buttons[0].innerHTML).toEqual(MaterialIcons.ARROW_LEFT);
     expect(buttons[1].innerHTML).toEqual(MaterialIcons.ARROW_RIGHT);
 
     buttons[0].click();
-    cards = carousel.querySelectorAll('span');
+    cards = carousel.querySelectorAll('.Mock-Card');
     expect(cards.length).toEqual(sc.DEFAULT_VISIBLE_ITEMS_COUNT);
     expect(cards[0].innerHTML).toEqual(mockItems[mockItems.length - 1].name);
 
     buttons[1].click();
     buttons[1].click();
-    cards = carousel.querySelectorAll('span');
+    cards = carousel.querySelectorAll('.Mock-Card');
     expect(cards.length).toEqual(sc.DEFAULT_VISIBLE_ITEMS_COUNT);
     expect(cards[0].innerHTML).toEqual(mockItems[1].name);
   });
 
   it('renders with 4 cards', async () => {
     const mockItems = [
-      { id: 'id1', name: 'mock1' },
-      { id: 'id2', name: 'mock2' },
-      { id: 'id3', name: 'mock3' },
-      { id: 'id4', name: 'mock4' },
+      {
+        id: 'id1',
+        name: 'name1',
+        materialIcon: 'icon1',
+        description: 'description1',
+        config: {},
+      },
+      {
+        id: 'id2',
+        name: 'name2',
+        materialIcon: 'icon2',
+        description: 'description2',
+        config: {},
+      },
+      {
+        id: 'id3',
+        name: 'name3',
+        materialIcon: 'icon3',
+        description: 'description3',
+        config: {},
+      },
+      {
+        id: 'id4',
+        name: 'name4',
+        materialIcon: 'icon4',
+        description: 'description4',
+        config: {},
+      },
     ];
     const mockItemsNames = mockItems.map((i) => i.name).sort();
     const mockItemsVisibleCount = mockItems.length;
-    const mockOnAdd = jest.fn();
+    const mockOnAdd = jest.fn(() => '');
 
     const carousel = renderCarousel({
       items: mockItems,
       onAdd: mockOnAdd,
       itemsVisibleCount: mockItemsVisibleCount,
     });
-    const cards = carousel.querySelectorAll('span');
+    const cards = carousel.querySelectorAll('.Mock-Card');
+
 
     expect(cards.length).toEqual(mockItemsVisibleCount);
-    expect(cards.map((c) => c.innerHTML).sort()).toEqual(mockItemsNames);
+    expect(new Array(cards.length).fill(0).map((_, i) => cards[i].innerHTML).sort())
+      .toEqual(mockItemsNames);
   });
 
   it('gets next valid index properly', async () => {
@@ -158,7 +229,7 @@ describe('SELECTOR CAROUSEL', () => {
       name: 'mock',
       materialIcon: 'mock',
       description: 'mock',
-      some: 'mock',
+      config: {},
     };
     const mockItemResult = {
       name: 'mock',

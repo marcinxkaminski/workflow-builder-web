@@ -2,11 +2,10 @@
 
 import React, { memo } from 'react';
 import {
-  shape, func, string, bool,
+  shape, func, string, bool, object, number,
 } from 'prop-types';
 import Button from './Button';
 import * as MaterialIcons from '../data/MaterialIcons';
-import WorkflowElement from '../models/WorkflowElement';
 
 const renderIndex = (index) => (
   <div className="row justify-content-center">
@@ -90,7 +89,7 @@ const renderConfig = (config, onChange) => (
 
 const Card = (props) => {
   const {
-    item = {}, customClasses = '', hideButtons, onAdd, onDelete, onChange,
+    item, customClasses, hideButtons, onAdd, onDelete, onChange,
   } = props;
 
   if (!item || !Object.keys(item).length) {
@@ -127,7 +126,13 @@ Card.defaultProps = {
 };
 
 Card.propTypes = {
-  item: shape(WorkflowElement.prototype),
+  item: shape({
+    index: number,
+    name: string,
+    materialIcon: string,
+    description: string,
+    config: object,
+  }),
   customClasses: string,
   hideButtons: bool,
   onAdd: func,

@@ -28,10 +28,10 @@ const renderIcon = (icon) => (
 const Button = (props) => {
   const btnProps = getButtonProps(props);
   const {
-    shadow = DEFAULT_SHADOW,
+    shadow,
     customClasses,
     loading,
-    icon = DEFAULT_ICON,
+    icon,
   } = props;
 
   return (

@@ -69,7 +69,7 @@ const SelectorCarousel = (props) => {
     }
     const indexes = [getPreviousIndex(activeItemIndex, itemsCount, infinite)];
 
-    new Array(visibleItemsCount).fill(visibleItemsCount).forEach(() => {
+    new Array(visibleItemsCount - 1).fill(visibleItemsCount).forEach(() => {
       indexes.push(getNextIndex(indexes[indexes.length - 1], itemsCount, infinite));
     });
 

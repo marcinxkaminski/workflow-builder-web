@@ -1,6 +1,6 @@
 export function WorkflowElementError(message) {
   this.name = 'WorkflowElementError';
-  this.message = message || '';
+  this.message = message;
 }
 
 export const ID_ERROR_MESSAGE = 'Invalid workflow element\'s ID';
