@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Workflow from '../workflow/WorkflowContainer';
+import Selector from '../selector/SelectorContainer';
 
-export default class App extends Component {
-  render() {
-    return (
-      <div>
-        Hi!
-      </div>
-    );
-  }
-}
+export default () => (
+  <div>
+    <Selector />
+    <Workflow />
+  </div>
+);
