@@ -22,6 +22,7 @@ module.exports = {
     'react',
   ],
   rules: {
+    "import/no-unresolved": "off",
     "import/prefer-default-export": "off",
     "no-console": ["error", { allow: ["warn", "error"] }]
   },
