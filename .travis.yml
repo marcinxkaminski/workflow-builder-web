@@ -9,7 +9,7 @@ install:
   - npm i -g snyk codecov codeclimate-test-reporter
   - npm i
 script:
-  - snyk auth
+  - snyk auth $SNYK_TOKEN
   - snyk test
   - npm run test:coverage
   - npm run lint
