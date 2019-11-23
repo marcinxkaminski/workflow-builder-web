@@ -3,10 +3,10 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import React from 'react';
 import WorkflowElementsList, { tranfsormItemToDisplay } from './WorkflowElementsList';
-import Card from '../Common/Card';
+import Card from '../common/Card';
 
 
-jest.mock('../Common/Card', () => jest.fn((props) => (
+jest.mock('../common/Card', () => jest.fn((props) => (
   <div
     role="button"
     className="CARD-ELEMENT"

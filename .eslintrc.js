@@ -25,14 +25,6 @@ module.exports = {
     "import/prefer-default-export": "off",
     "no-console": ["error", { allow: ["warn", "error"] }]
   },
-  settings: {
-    "import/resolver": {
-      "node": {
-        "paths": ["src"],
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
-    },
-  },
   overrides: [
     {
       files: ["*.test.js", "*.test.jsx"],

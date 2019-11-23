@@ -4,8 +4,8 @@ import React, { useState, memo } from 'react';
 import {
   arrayOf, func, bool, number, string, shape,
 } from 'prop-types';
-import Card from '../Common/Card';
-import Button from '../Common/Button';
+import Card from '../common/Card';
+import Button from '../common/Button';
 import * as MaterialIcons from '../data/MaterialIcons';
 
 export const DEFAULT_INFINITE_STATE = true;

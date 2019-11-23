@@ -4,7 +4,7 @@ import {
 } from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Button from '../Common/Button';
+import Button from '../common/Button';
 import { DOWNLOAD } from '../data/MaterialIcons';
 import { deleteWorkflowElement, submitWorkflow, onlineProcessing } from './workflowActions';
 import WorkflowElementsList from './WorkflowElementsList';

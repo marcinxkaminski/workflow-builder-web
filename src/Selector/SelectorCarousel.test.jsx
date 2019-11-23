@@ -3,14 +3,14 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import React from 'react';
 import SelectorCarousel, * as sc from './SelectorCarousel';
-import Card from '../Common/Card';
-import Button from '../Common/Button';
+import Card from '../common/Card';
+import Button from '../common/Button';
 import * as MaterialIcons from '../data/MaterialIcons';
 
-jest.mock('../Common/Card', () => ({ item, onAdd }) => (
+jest.mock('../common/Card', () => ({ item, onAdd }) => (
   <button type="button" className="Mock-Card" onClick={onAdd}>{item.name}</button>
 ));
-jest.mock('../Common/Button', () => ({ onClick, icon }) => (
+jest.mock('../common/Button', () => ({ onClick, icon }) => (
   <button type="button" className="Mock-Button" onClick={onClick}>{icon}</button>
 ));
 jest.mock('../data/MaterialIcons', () => ({

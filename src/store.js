@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import workflowState, { initialState as workflowInitialState } from './Workflow/workflowReducer';
-import selectorState, { initialState as selectorInitialState } from './Selector/selectorReducer';
+import workflowState, { initialState as workflowInitialState } from './workflow/workflowReducer';
+import selectorState, { initialState as selectorInitialState } from './selector/selectorReducer';
 
 const initialState = {
   workflowState: workflowInitialState,

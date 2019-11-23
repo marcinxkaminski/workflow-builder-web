@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import {
   arrayOf, func, object, string, shape,
 } from 'prop-types';
-import Card from '../Common/Card';
+import Card from '../common/Card';
 
 export const tranfsormItemToDisplay = ({ id, name, config }, index) => ({
   id, name, config, index,

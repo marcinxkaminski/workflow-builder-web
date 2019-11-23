@@ -3,12 +3,12 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import React from 'react';
 import App from './App';
-import Selector from '../Selector/SelectorContainer';
-import Workflow from '../Workflow/WorkflowContainer';
+import Selector from '../selector/SelectorContainer';
+import Workflow from '../workflow/WorkflowContainer';
 
-jest.mock('../Selector/SelectorContainer',
+jest.mock('../selector/SelectorContainer',
   () => (...prop) => <span>SelectorContainer</span>);
-jest.mock('../Workflow/WorkflowContainer',
+jest.mock('../workflow/WorkflowContainer',
   () => (...prop) => <span>WorkflowContainer</span>);
 
 describe('APP', () => {
