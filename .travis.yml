@@ -9,13 +9,13 @@ install:
   - npm i
 script:
   - snyk test
-  - npm run test:coverage && codecov
-  - codeclimate-test-reporter < ./coverage/lcov.info
+  - npm run test:coverage
   - npm run lint
   - npm run build
 after_success:
   - snyk monitor
   - codecov
+  - codeclimate-test-reporter < ./coverage/lcov.info
 deploy:
   provider: netlify
   site: workflowbuilder.netlify.com
