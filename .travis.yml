@@ -6,7 +6,7 @@ cache:
   directories:
     - node_modules
 install:
-  - npm i -g snyk codecov codeclimate-test-reporter netlify
+  - npm i -g snyk codecov codeclimate-test-reporter
   - npm i
 script:
   - snyk auth $SNYK_TOKEN
@@ -16,15 +16,13 @@ script:
   - npm run build
 after_success:
   - snyk monitor
-  - codecov
+  - codecov -f ./coverage/lcov.info
   - codeclimate-test-reporter < ./coverage/lcov.info
   - npm run deploy
 deploy:
-  provider: netlify
-  site: workflowbuilder.netlify.com
-  auth: $NETLIFY_AUTH_TOKEN
-  edge: true
+  provider: pages
   skip_cleanup: true
-  local_dir: build
+  github_token: $GITHUB_TOKEN
+  keep_history: true
   on:
     branch: master
