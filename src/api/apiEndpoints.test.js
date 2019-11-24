@@ -4,7 +4,7 @@ import * as ApiEndpoints from './apiEndpoints';
 
 describe('API ENDPOINTS', () => {
   it('has base api url', async () => {
-    expect(ApiEndpoints.BASE_API_URL).toEqual('https://workflow-builder-api.herokuapp.com/');
+    expect(ApiEndpoints.BASE_API_URL).toEqual('https://workflow-builder-api.herokuapp.com/api/workflow-builder');
   });
 
   it('has workflow elements\' endpoint', async () => {
