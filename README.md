@@ -1,5 +1,4 @@
-## Demo
-https://marcinxkaminski.github.io/workflow-builder-web/
+## [DEMO](https://github.com/marcinxkaminski/workflow-builder-web)
 -----------------------------------------------
 
 # Engineer's Thesis
