@@ -2,7 +2,7 @@
 https://marcinxkaminski.github.io/workflow-builder-web/
 -----------------------------------------------
 
-# Engineer's Thesis -- Marcin Kamiński
+# Engineer's Thesis
 Web app for managing the machine learning process for Engineer's Thesis on AGH (University of Science and Technology) in Cracow.
 
 [![Build Status](https://travis-ci.com/marcinxkaminski/workflow-builder-web.svg?branch=master)](https://travis-ci.com/marcinxkaminski/workflow-builder-web)
