@@ -11,7 +11,6 @@ Web app for managing the machine learning process for Engineer's Thesis on AGH (
  [![Maintainability](https://api.codeclimate.com/v1/badges/26033eb268ac5dffe296/maintainability)](https://codeclimate.com/github/marcinxkaminski/workflow-builder-web/maintainability)
 
 
-
 ### Installing
 
 * Project setup
@@ -33,16 +32,3 @@ Web app for managing the machine learning process for Engineer's Thesis on AGH (
     ```
     npm run test
     ```
-
-* Lints and fixes files
-    ```
-    npm run lint
-    npm run lint:fix
-    ```
-
-### Authors
-  * [**Marcin Kamiński**](https://github.com/xkamson)
-
-
-### Contribution
-Feel free to contribute. Please follow the styles above while creating pull requests.
