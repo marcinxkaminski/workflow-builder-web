@@ -1,5 +1,5 @@
 ## Demo
-https://xkamson.github.io/workflow-builder-web/
+https://marcinxkaminski.github.io/workflow-builder-web/
 -----------------------------------------------
 
 # Engineer's Thesis -- Marcin Kamiński
