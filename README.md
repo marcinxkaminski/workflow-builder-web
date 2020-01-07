@@ -9,7 +9,7 @@ Web app for managing the machine learning process for Engineer's Thesis on AGH (
  [![Known Vulnerabilities](https://snyk.io/package/npm/snyk/badge.svg)](https://snyk.io/package/npm/snyk)
  [![codecov](https://codecov.io/gh/marcinxkaminski/workflow-builder-web/branch/master/graph/badge.svg)](https://codecov.io/gh/marcinxkaminski/workflow-builder-web)
  [![Maintainability](https://api.codeclimate.com/v1/badges/26033eb268ac5dffe296/maintainability)](https://codeclimate.com/github/marcinxkaminski/workflow-builder-web/maintainability)
- [![Test Coverage](https://api.codeclimate.com/v1/badges/26033eb268ac5dffe296/test_coverage)](https://codeclimate.com/github/marcinxkaminski/workflow-builder-web/test_coverage)
+
 
 
 ### Installing
