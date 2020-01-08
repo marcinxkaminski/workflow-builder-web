@@ -24,21 +24,16 @@ jobs:
         npm i
     - name: Test Coverage
       run:
-        npm run test-coverage
+        npm run test:coverage
     - name: ESLint
       run:
         npm run lint
       env:
         CI: true
-    - name: Code Coverage (CodeCov)
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        fail_ci_if_error: true
     - name: Code Coverage - CodeClimate
       uses: paambaati/codeclimate-action@v2.3.0
       env:
         CC_TEST_REPORTER_ID: ${{secrets.CODE_CLIMATE_TOKEN}}
       with:
-        coverageCommand: npm run test-coverage
+        coverageCommand: npm run test:coverage
         debug: true
