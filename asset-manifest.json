@@ -1,17 +1,25 @@
 {
   "files": {
-    "main.css": "/workflow-builder-web/static/css/main.7b8ac97c.chunk.css",
-    "main.js": "/workflow-builder-web/static/js/main.f0f894c1.chunk.js",
-    "main.js.map": "/workflow-builder-web/static/js/main.f0f894c1.chunk.js.map",
-    "runtime~main.js": "/workflow-builder-web/static/js/runtime~main.6784e263.js",
-    "runtime~main.js.map": "/workflow-builder-web/static/js/runtime~main.6784e263.js.map",
+    "main.css": "/workflow-builder-web/static/css/main.507fed8d.chunk.css",
+    "main.js": "/workflow-builder-web/static/js/main.f4b1eafe.chunk.js",
+    "main.js.map": "/workflow-builder-web/static/js/main.f4b1eafe.chunk.js.map",
+    "runtime-main.js": "/workflow-builder-web/static/js/runtime-main.0e883d54.js",
+    "runtime-main.js.map": "/workflow-builder-web/static/js/runtime-main.0e883d54.js.map",
     "static/css/2.833dd627.chunk.css": "/workflow-builder-web/static/css/2.833dd627.chunk.css",
-    "static/js/2.19b91c8b.chunk.js": "/workflow-builder-web/static/js/2.19b91c8b.chunk.js",
-    "static/js/2.19b91c8b.chunk.js.map": "/workflow-builder-web/static/js/2.19b91c8b.chunk.js.map",
+    "static/js/2.f38c4b5a.chunk.js": "/workflow-builder-web/static/js/2.f38c4b5a.chunk.js",
+    "static/js/2.f38c4b5a.chunk.js.map": "/workflow-builder-web/static/js/2.f38c4b5a.chunk.js.map",
     "index.html": "/workflow-builder-web/index.html",
-    "precache-manifest.48ed2d966abd1208c2ecb212a658c0b6.js": "/workflow-builder-web/precache-manifest.48ed2d966abd1208c2ecb212a658c0b6.js",
+    "precache-manifest.036d0c48a7a3a0d04a5847aa66f1339a.js": "/workflow-builder-web/precache-manifest.036d0c48a7a3a0d04a5847aa66f1339a.js",
     "service-worker.js": "/workflow-builder-web/service-worker.js",
     "static/css/2.833dd627.chunk.css.map": "/workflow-builder-web/static/css/2.833dd627.chunk.css.map",
-    "static/css/main.7b8ac97c.chunk.css.map": "/workflow-builder-web/static/css/main.7b8ac97c.chunk.css.map"
-  }
+    "static/css/main.507fed8d.chunk.css.map": "/workflow-builder-web/static/css/main.507fed8d.chunk.css.map",
+    "static/js/2.f38c4b5a.chunk.js.LICENSE": "/workflow-builder-web/static/js/2.f38c4b5a.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0e883d54.js",
+    "static/css/2.833dd627.chunk.css",
+    "static/js/2.f38c4b5a.chunk.js",
+    "static/css/main.507fed8d.chunk.css",
+    "static/js/main.f4b1eafe.chunk.js"
+  ]
 }
